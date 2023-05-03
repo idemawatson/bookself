@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String @id @unique @default(cuid())
+  name  String
+  email String @unique
+  books Book[]
+  followedBy Follows[] @relation("following")
+  following  Follows[] @relation("follower")
+}
+
+model Book {
+  id           String    @id @unique @default(cuid())
+  book_id      String
+  owner        User?     @relation(fields: [user_id], references: [id])
+  user_id      String
+  title        String
+  author       String?
+  image_url    String?
+  comment      String?
+  description  String?
+  page_count   Int?
+  published_at DateTime?
+  created_at   DateTime? @default(now())
+  updated_at   DateTime? @default(now()) @updatedAt
+  status       Int
+  @@unique([user_id, book_id], name: "book_id_on_user")
+}
+
+model Follows {
+  follower    User @relation("follower", fields: [followerId], references: [id])
+  followerId  String
+  following   User @relation("following", fields: [followingId], references: [id])
+  followingId String
+
+  @@id([followerId, followingId])
+}
