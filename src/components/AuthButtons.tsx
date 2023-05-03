@@ -1,5 +1,3 @@
-"use client";
-
 import { signIn, signOut } from "next-auth/react";
 
 export const LoginButton = () => {
@@ -7,7 +5,7 @@ export const LoginButton = () => {
     <button
       style={{ marginRight: 10 }}
       onClick={() => {
-        signIn("google", { callbackUrl: "http://localhost:3000/samples" });
+        signIn("google", { callbackUrl: "/samples" });
       }}
     >
       Sign in

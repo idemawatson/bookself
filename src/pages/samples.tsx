@@ -1,13 +1,12 @@
-"use client";
-
-import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Article() {
+  const router = useRouter();
   const session = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/");
+      router.push("/");
     },
   });
   if (session?.status === "loading") {
