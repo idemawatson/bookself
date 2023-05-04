@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -8,7 +8,7 @@ type ClientType = {
   clientSecret: string;
 };
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
@@ -23,12 +23,13 @@ const authOptions: NextAuthOptions = {
     signIn: async ({ user }) => {
       console.log("SignIn Callback");
       try {
-        const email = user.email as string;
+        const user_id = user.id as string;
         const upsertUser = await prisma.user.upsert({
-          where: { email },
+          where: { sub: user_id },
           update: {},
           create: {
-            email,
+            sub: user_id,
+            email: user.email as string,
             name: user.name as string,
           },
         });
@@ -37,6 +38,12 @@ const authOptions: NextAuthOptions = {
         console.error(e);
         return false;
       }
+    },
+    session({ session, token }) {
+      if (session.user != null && token.sub != null) {
+        session.user.id = token.sub;
+      }
+      return session;
     },
   },
 };
