@@ -1,6 +1,6 @@
 import { LoginButton, LogoutButton } from "@/components/AuthButtons";
 
-export default function Home() {
+const Home = () => {
   return (
     <main
       style={{
@@ -14,4 +14,6 @@ export default function Home() {
       <LogoutButton />
     </main>
   );
-}
+};
+
+export default Home;

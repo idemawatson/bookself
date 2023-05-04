@@ -1,17 +1,12 @@
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
+import { MainLayout } from "@/components/layout/MainLayout";
+import useSession from "@/hooks/useSession";
 
-export default function Article() {
-  const router = useRouter();
-  const session = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/");
-    },
-  });
-  if (session?.status === "loading") {
-    return <p>Loading....</p>;
-  }
+const Samples = () => {
+  const session = useSession();
 
   return <div>{JSON.stringify(session)}</div>;
-}
+};
+
+Samples.layout = MainLayout;
+
+export default Samples;
