@@ -10,6 +10,7 @@ export default class BookSerializer {
   execute(): ClientBook {
     return {
       id: this.book.id,
+      book_id: this.book.book_id,
       title: this.book.title,
       author: this.book.author || undefined,
       publishedAt: this.book.published_at?.toISOString() || undefined,

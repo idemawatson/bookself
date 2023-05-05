@@ -11,6 +11,7 @@ export type SearchBook = {
 };
 
 export type ClientBook = SearchBook & {
+  book_id: string;
   comment?: string;
   status: BookStatuses;
   completedAt?: string;

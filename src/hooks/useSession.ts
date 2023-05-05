@@ -1,4 +1,4 @@
-import { useLoading } from "@/components/parts/TheLoading/hook";
+import { useLoading } from "@/hooks/useLoading";
 import { useSession as useNextAuthSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
