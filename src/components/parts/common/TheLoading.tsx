@@ -1,6 +1,6 @@
 import { Box, LinearProgress, styled } from "@mui/material";
 import { FC } from "react";
-import { useLoading } from "@/components/parts/TheLoading/hook";
+import { useLoading } from "@/hooks/useLoading";
 
 export const TheLoading: FC = () => {
   const DisabledBackground = styled(Box)({
@@ -9,7 +9,7 @@ export const TheLoading: FC = () => {
     position: "fixed",
     background: "#ccc",
     opacity: 0.5,
-    zIndex: 1000,
+    zIndex: 10000,
   });
 
   const { loading } = useLoading();

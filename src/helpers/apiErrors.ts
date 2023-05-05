@@ -6,6 +6,7 @@ class CustomBaseError extends BaseError {
     this.code = code;
   }
 }
+export class ApplicationError extends CustomBaseError {}
 export class ValidationError extends CustomBaseError {}
 export class NotFoundError extends CustomBaseError {}
 export class NotAuthorizedError extends CustomBaseError {}

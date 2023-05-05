@@ -1,12 +1,10 @@
 import { Paper, Typography } from "@mui/material";
-import { useRouter } from "next/router";
-import { BaseButton } from "@/components/parts/BaseButton";
+import { ReactNode } from "react";
 
-const Error500: React.FC = () => {
-  const router = useRouter();
-  const toHome = () => {
-    router.push("/shelf");
-  };
+type Props = {
+  children?: ReactNode;
+};
+const Error500: React.FC<Props> = ({ children }) => {
   return (
     <Paper
       sx={{
@@ -30,9 +28,7 @@ const Error500: React.FC = () => {
         <div>司書が頑張って直しています...</div>
         <div>しばらく待ってお試しください</div>
       </Typography>
-      <BaseButton sx={{ my: 1 }} color="secondary" onClick={toHome}>
-        ホームに戻る
-      </BaseButton>
+      {children}
     </Paper>
   );
 };

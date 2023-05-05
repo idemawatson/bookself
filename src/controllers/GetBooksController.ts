@@ -6,7 +6,7 @@ import { ClientBook } from "@/types/BooksResponse";
 export default class GetBooksController {
   constructor() {}
 
-  async execute(user_id: string): Promise<ClientBook[]> {
+  async execute({ user_id }: { user_id?: string }): Promise<ClientBook[]> {
     if (!user_id) throw new ValidationError("user_id required");
     const books = await prisma.book.findMany({
       where: {

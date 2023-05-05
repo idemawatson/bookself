@@ -1,4 +1,4 @@
-import BaseCircularProgress from "@/components/parts/BaseCircularProgress";
+import BaseCircularProgress from "@/components/parts/common/BaseCircularProgress";
 import { useIntersection } from "@/hooks/useIntersection";
 import { useSelectedBook } from "@/hooks/useSelectedBook";
 import { useShelfFilterTab } from "@/hooks/shelf/useShelfFilterTab";
@@ -6,8 +6,8 @@ import { useBooks } from "@/hooks/useBooks";
 import { ClientBook } from "@/types/BooksResponse";
 import { Alert, AlertTitle, Box } from "@mui/material";
 import { FC, useEffect, useRef, useState } from "react";
-// import BookUpdateDrawer from "./BookUpdateDrawer";
-import ShelfStage from "./ShelfStage";
+import ShelfStage from "@/components/shelf/ShelfStage";
+import ShelfBookUpdateDrawer from "@/components/shelf/ShelfBookUpdateDrawer";
 
 type Props = {};
 const PER_PAGE_LIMIT = 12;
@@ -20,21 +20,22 @@ const ShelfContent: FC<Props> = () => {
 
   const { shelfFilterTab: tab } = useShelfFilterTab();
   const [drawer, setDrawer] = useState(false);
-  const { setSelectedBook } = useSelectedBook();
+  const { selectedBook, setSelectedBook } = useSelectedBook();
   const { data, mutate, size, setSize } = useBooks(tab - 1);
+  const [openCount, setOpenCount] = useState(0);
 
   const isEmpty = data && data[0]?.length === 0;
   const isReachingEnd =
     isEmpty || (data && data[data.length - 1]?.length < PER_PAGE_LIMIT);
 
   useEffect(() => {
-    // トリガーが表示されたらデータを取得
     if (intersection && !isReachingEnd) {
       getBooks();
     }
   }, [intersection, isReachingEnd]);
 
   const open = (book: ClientBook) => {
+    setOpenCount(openCount + 1);
     setSelectedBook({ ...book });
     setDrawer(true);
   };
@@ -75,12 +76,14 @@ const ShelfContent: FC<Props> = () => {
           </Alert>
         )}
       </Box>
-
-      {/* <BookUpdateDrawer
-        open={drawer}
-        setOpen={setDrawer}
-        mutate={mutate}
-      ></BookUpdateDrawer> */}
+      {selectedBook && (
+        <ShelfBookUpdateDrawer
+          key={openCount}
+          drawer={drawer}
+          setOpen={setDrawer}
+          mutate={mutate}
+        />
+      )}
     </>
   );
 };

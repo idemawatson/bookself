@@ -48,8 +48,6 @@ export default (handlers: Handlers) => {
       });
     }
 
-    req.body = { ...req.body, user: session.user };
-
     try {
       await handler(req, res);
     } catch (err) {
