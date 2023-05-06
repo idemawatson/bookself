@@ -1,13 +1,13 @@
 import { calcLevel } from "@/helpers/levelUtils";
 import prisma from "@/lib/prisma";
-import { Book, UserRecord } from "@prisma/client";
+import { UserRecord } from "@prisma/client";
 
 export default class UserProfilceLevelUpService {
   constructor() {}
 
   async execute({
     user_id,
-    pageCount = 0,
+    pageCount,
   }: {
     user_id: string;
     pageCount: number;

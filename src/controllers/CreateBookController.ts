@@ -3,7 +3,10 @@ import { CreateBookRequest } from "@/types/CreateBookRequest";
 import CreateBookUsecase from "@/usecases/CreateBookUsecase";
 
 export default class CreateBookController {
-  constructor() {}
+  usecase: CreateBookUsecase;
+  constructor() {
+    this.usecase = new CreateBookUsecase();
+  }
 
   async execute({
     body,
@@ -13,6 +16,9 @@ export default class CreateBookController {
     user_id?: string;
   }) {
     if (!user_id) throw new ValidationError();
-    await new CreateBookUsecase().execute({ user_id, body });
+    const { levelUpRecord } = await this.usecase.execute({ user_id, body });
+    return {
+      newLevel: levelUpRecord ? levelUpRecord.level : null,
+    };
   }
 }
