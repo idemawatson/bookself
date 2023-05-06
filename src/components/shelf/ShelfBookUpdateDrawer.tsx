@@ -1,22 +1,18 @@
 import BookCard from "@/components/parts/books/BookCard";
 import { ClientBook } from "@/types/BooksResponse";
-import {
-  BookUpdateSchema,
-  bookUpdateSchema,
-  BOOK_STATUSES,
-} from "@/types/IBookForm";
+import { BookUpdateSchema, bookUpdateSchema } from "@/types/IBookForm";
 import { Box, Button, Grid, SwipeableDrawer } from "@mui/material";
 import { useForm } from "react-hook-form";
 import ShelfBookUpdateForm from "@/components/shelf/ShelfBookUpdateForm";
 import { BaseButton } from "@/components/parts/common/BaseButton";
-import { useLoading } from "@/hooks/useLoading";
-import { useNotification } from "@/hooks/useNotification";
 import dayjs from "@/lib/importDayjs";
-import { KeyedMutator, useSWRConfig } from "swr";
+import { KeyedMutator } from "swr";
 import { useSelectedBook } from "@/hooks/useSelectedBook";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { client } from "@/providers/AxiosClientProvider";
+import useUpdateBook from "@/hooks/shelf/useUpdateBook";
+import UserLevelUpDialog from "@/components/parts/user/UserLevelUpDialog";
+import { useState } from "react";
 
 type Props = {
   drawer: boolean;
@@ -29,10 +25,7 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
   setOpen,
   mutate,
 }) => {
-  const { showLoading, hideLoading } = useLoading();
-  const { showSuccess, showError } = useNotification();
   const { selectedBook: book } = useSelectedBook();
-  const { mutate: mutateAll } = useSWRConfig();
   const formMethods = useForm<BookUpdateSchema>({
     mode: "onChange",
     resolver: yupResolver(bookUpdateSchema),
@@ -42,37 +35,20 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
       completedAt: dayjs(book?.completedAt).toDate(),
     },
   });
+  const { updateBook } = useUpdateBook();
+  const [newLevel, setNewLevel] = useState<number | null>(null);
+
+  const handleSubmit = async (form: BookUpdateSchema) => {
+    const res = await updateBook(form, mutate);
+    if (res && !!res.newLevel) {
+      setNewLevel(res.newLevel);
+    }
+    close();
+  };
 
   const close = () => {
     setOpen(false);
     formMethods.reset();
-  };
-
-  const update = async (form: BookUpdateSchema) => {
-    try {
-      if (!book) return;
-      showLoading();
-      const req = {
-        ...form,
-        completedAt:
-          form.status === BOOK_STATUSES.COMPLETED
-            ? dayjs(form.completedAt).toDate()
-            : undefined,
-      };
-      await client.patch<BookUpdateSchema, any>(`/books/${book.book_id}`, req);
-      showSuccess("更新しました");
-      mutateAll(
-        (key) => typeof key === "string" && key.startsWith("books?"), // どのキャッシュキーを更新するか
-        undefined, // キャッシュデータを `undefined` に更新する
-        { revalidate: true } // 再検証しない
-      );
-      close();
-    } catch (err) {
-      console.error(err);
-      showError("エラーが発生しました");
-    } finally {
-      hideLoading();
-    }
   };
 
   return (
@@ -88,7 +64,7 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
           {book && (
             <>
               <BookCard book={book} />
-              <form onSubmit={formMethods.handleSubmit(update)}>
+              <form onSubmit={formMethods.handleSubmit(handleSubmit)}>
                 <Box sx={{ p: 1, mt: 2 }}>
                   <ShelfBookUpdateForm
                     control={formMethods.control}
@@ -117,6 +93,11 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
           )}
         </Box>
       </SwipeableDrawer>
+      <UserLevelUpDialog
+        dialog={!!newLevel}
+        level={newLevel}
+        close={() => setNewLevel(null)}
+      />
     </>
   );
 };

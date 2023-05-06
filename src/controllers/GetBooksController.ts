@@ -2,7 +2,6 @@ import BookSerializer from "@/helpers/BookSerializer";
 import { ValidationError } from "@/helpers/apiErrors";
 import prisma from "@/lib/prisma";
 import { ClientBook } from "@/types/BooksResponse";
-import { BookStatuses } from "@/types/IBookForm";
 
 export default class GetBooksController {
   constructor() {}

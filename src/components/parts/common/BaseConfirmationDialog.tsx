@@ -13,6 +13,7 @@ type Props = {
   title: string;
   handleClose: () => void;
   handleAgree: () => void;
+  disableCancel?: boolean;
   children: ReactNode;
 };
 const BaseConfirmationDialog: FC<Props> = ({
@@ -21,13 +22,14 @@ const BaseConfirmationDialog: FC<Props> = ({
   children,
   handleClose,
   handleAgree,
+  disableCancel = false,
 }) => {
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>キャンセル</Button>
+        {disableCancel || <Button onClick={handleClose}>キャンセル</Button>}
         <BaseButton color="primary" onClick={handleAgree}>
           OK
         </BaseButton>

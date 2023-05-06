@@ -28,7 +28,7 @@ const putHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const body = req.body as CreateBookRequest;
   const controller = new CreateBookController();
-  await controller
+  const { newLevel } = await controller
     .execute({
       user_id: session?.user.id,
       body,
@@ -43,7 +43,7 @@ const putHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
       throw new ApplicationError(error.message);
     });
-  res.json({ created: true });
+  res.json({ newLevel });
 };
 
 export default apiHandler({

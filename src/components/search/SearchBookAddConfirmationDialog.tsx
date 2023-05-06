@@ -1,15 +1,11 @@
 import { Box, Typography } from "@mui/material";
-import { FC, useState } from "react";
+import { useState } from "react";
 import BaseConfirmationDialog from "@/components/parts/common/BaseConfirmationDialog";
-import { useLoading } from "@/hooks/useLoading";
-import { client } from "@/providers/AxiosClientProvider";
 import { SearchBook } from "@/types/BooksResponse";
-import { useNotification } from "@/hooks/useNotification";
 import { SelectField } from "@/components/parts/forms/SelectField/presenter";
 import { BOOK_STATUSES, BookStatuses } from "@/types/IBookForm";
-import { CreateBookRequest } from "@/types/CreateBookRequest";
-import { isAxiosError } from "axios";
-import { CREATE_BOOK_DUPLICATE } from "@/helpers/errorCodes";
+import useCreateBook from "@/hooks/search/useCreateBook";
+import UserLevelUpDialog from "../parts/user/UserLevelUpDialog";
 
 export const STATUS_SELECTIONS = [
   { text: "読みたい", value: 0 },
@@ -23,39 +19,19 @@ type Props = {
   book?: SearchBook;
 };
 
-const BookAddConfirmationDialog: FC<Props> = ({ close, book }) => {
-  const { showLoading, hideLoading } = useLoading();
-  const { showSuccess, showError } = useNotification();
+const BookAddConfirmationDialog: React.FC<Props> = ({ close, book }) => {
   const [status, setStatus] = useState<BookStatuses>(BOOK_STATUSES.WANT);
+  const [newLevel, setNewLevel] = useState<number | null>(null);
+  const { createBook } = useCreateBook();
 
-  const addBookToShelf = async () => {
-    try {
-      if (!book) return;
-      showLoading();
-      await client.put<CreateBookRequest, any>("/books", {
-        ...book,
-        book_id: book.id,
-        status,
-      });
-      showSuccess("本棚に追加しました");
-    } catch (err) {
-      console.error(err);
-      if (
-        isAxiosError(err) &&
-        err.response?.data?.code === CREATE_BOOK_DUPLICATE
-      ) {
-        showError("すでに登録済みです");
-      } else {
-        showError("エラーが発生しました");
-      }
-    } finally {
-      hideLoading();
+  const handleAgree = async () => {
+    const res = await createBook(book, status);
+    if (res && !!res.newLevel) {
+      setNewLevel(res.newLevel);
     }
-  };
-  const handleAgree = () => {
-    addBookToShelf();
     close();
   };
+
   return (
     <>
       <BaseConfirmationDialog
@@ -79,6 +55,11 @@ const BookAddConfirmationDialog: FC<Props> = ({ close, book }) => {
           />
         </Box>
       </BaseConfirmationDialog>
+      <UserLevelUpDialog
+        dialog={!!newLevel}
+        level={newLevel}
+        close={() => setNewLevel(null)}
+      />
     </>
   );
 };

@@ -13,7 +13,7 @@ export default class CreateBookUsecase {
     user_id: string;
     body: CreateBookRequest;
   }) {
-    prisma.$transaction(async (prisma) => {
+    return await prisma.$transaction(async (prisma) => {
       const book = await prisma.book.create({
         data: {
           book_id: body.book_id,
@@ -38,12 +38,15 @@ export default class CreateBookUsecase {
               : undefined,
         },
       });
+      let levelUpRecord = null;
       if (book.status === BOOK_STATUSES.COMPLETED) {
-        await new UserProfilceLevelUpService().execute({
+        levelUpRecord = await new UserProfilceLevelUpService().execute({
           user_id,
           pageCount: book.page_count,
         });
       }
+
+      return { book, levelUpRecord };
     });
   }
 }

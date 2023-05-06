@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { Prisma } from "@prisma/client";
 import { ApplicationError, NotFoundError } from "@/helpers/apiErrors";
+import { UpdateBookResponse } from "@/types/UpdateBookResponse";
 
 const patchHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerSession(req, res, authOptions);
