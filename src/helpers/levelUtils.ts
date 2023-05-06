@@ -18,15 +18,21 @@ export const getNextLevelPages = (level: number): number => {
   );
 };
 
-export const getRestExperience = (
-  level: number,
+export const getRestPages = (
+  currentLevel: number,
   totalPages: number
 ): number => {
-  return getNextLevelPages(level) - totalPages;
+  let restPage = totalPages;
+  let level = 1;
+  while (level < currentLevel) {
+    restPage -= getNextLevelPages(level);
+    level++;
+  }
+  return restPage;
 };
 
 export const getProgress = (level: number, totalPages: number): number => {
   return Math.floor(
-    (getRestExperience(level, totalPages) / getNextLevelPages(level)) * 100
+    (getRestPages(level, totalPages) / getNextLevelPages(level)) * 100
   );
 };

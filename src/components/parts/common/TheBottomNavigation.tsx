@@ -37,8 +37,8 @@ const LabelBottomNavigation: FC = () => {
           icon={<Search />}
         />
         <BottomNavigationAction
-          label="フォロー"
-          value="follow"
+          label="記録"
+          value="profile"
           icon={<PermIdentity />}
         />
       </BottomNavigation>
