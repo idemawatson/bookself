@@ -12,7 +12,7 @@ import { BaseButton } from "@/components/parts/common/BaseButton";
 import { useLoading } from "@/hooks/useLoading";
 import { useNotification } from "@/hooks/useNotification";
 import dayjs from "@/lib/importDayjs";
-import { KeyedMutator } from "swr";
+import { KeyedMutator, useSWRConfig } from "swr";
 import { useSelectedBook } from "@/hooks/useSelectedBook";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -32,6 +32,7 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
   const { showLoading, hideLoading } = useLoading();
   const { showSuccess, showError } = useNotification();
   const { selectedBook: book } = useSelectedBook();
+  const { mutate: mutateAll } = useSWRConfig();
   const formMethods = useForm<BookUpdateSchema>({
     mode: "onChange",
     resolver: yupResolver(bookUpdateSchema),
@@ -60,7 +61,11 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
       };
       await client.patch<BookUpdateSchema, any>(`/books/${book.book_id}`, req);
       showSuccess("更新しました");
-      mutate();
+      mutateAll(
+        (key) => typeof key === "string" && key.startsWith("books?"), // どのキャッシュキーを更新するか
+        undefined, // キャッシュデータを `undefined` に更新する
+        { revalidate: true } // 再検証しない
+      );
       close();
     } catch (err) {
       console.error(err);

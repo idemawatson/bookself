@@ -24,9 +24,10 @@ const Error500: React.FC<Props> = ({ children }) => {
       </Typography>
       <Typography
         sx={{ my: 1, color: "black", textAlign: "center", lineHeight: 2 }}
+        component={"div"}
       >
-        <div>司書が頑張って直しています...</div>
-        <div>しばらく待ってお試しください</div>
+        <p>司書が頑張って直しています...</p>
+        <p>しばらく待ってお試しください</p>
       </Typography>
       {children}
     </Paper>

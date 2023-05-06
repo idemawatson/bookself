@@ -23,7 +23,7 @@ model User {
 model Book {
   id           String    @id @unique @default(cuid())
   book_id      String
-  owner        User?     @relation(fields: [user_id], references: [sub])
+  owner        User     @relation(fields: [user_id], references: [sub])
   user_id      String
   title        String
   author       String?

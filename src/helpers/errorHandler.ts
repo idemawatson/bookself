@@ -1,6 +1,5 @@
 import { NextApiResponse } from "next";
 import { NotFoundError, ValidationError } from "@/helpers/apiErrors";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
 export const errorHandler = (error: any, res: NextApiResponse) => {
   console.error(error);
