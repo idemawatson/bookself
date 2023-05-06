@@ -2,10 +2,11 @@ import useSWRInfinite from "swr/infinite";
 import { ClientBook } from "@/types/BooksResponse";
 import { client } from "@/providers/AxiosClientProvider";
 
-export const useBooks = (status: number) => {
+export const useBooks = (status?: number) => {
   const getKey = (pageIndex: number, previousPageData: ClientBook[]) => {
     if (previousPageData && !previousPageData.length) return null;
-    return `books?page=${pageIndex + 1}&status=${status}`;
+    let url = `books?page=${pageIndex + 1}`;
+    return status != null ? `${url}&status=${status}` : url;
   };
   const fetcher = async (url: string): Promise<ClientBook[]> => {
     const response = await client.get(url);
@@ -15,10 +16,10 @@ export const useBooks = (status: number) => {
     suspense: true,
     initialSize: 1,
     persistSize: true,
-    revalidateFirstPage: false,
-    revalidateOnFocus: false,
-    revalidateOnMount: false,
-    revalidateIfStale: false,
+    revalidateFirstPage: true,
+    revalidateOnFocus: true,
+    revalidateOnMount: true,
+    revalidateIfStale: true,
   });
 
   return {

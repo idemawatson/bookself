@@ -21,7 +21,9 @@ const ShelfContent: FC<Props> = () => {
   const { shelfFilterTab: tab } = useShelfFilterTab();
   const [drawer, setDrawer] = useState(false);
   const { selectedBook, setSelectedBook } = useSelectedBook();
-  const { data, mutate, size, setSize } = useBooks(tab - 1);
+  const { data, mutate, size, setSize } = useBooks(
+    tab > 0 ? tab - 1 : undefined
+  );
   const [openCount, setOpenCount] = useState(0);
 
   const isEmpty = data && data[0]?.length === 0;
