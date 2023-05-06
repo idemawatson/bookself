@@ -11,13 +11,23 @@ datasource db {
 }
 
 model User {
-  id    String @id @unique @default(cuid())
-  sub   String @unique
-  name  String
-  email String @unique
-  books Book[]
+  id         String @id @unique @default(cuid())
+  sub        String @unique
+  name       String
+  email      String @unique
+  books      Book[]
+  record     UserRecord?
   followedBy Follows[] @relation("following")
   following  Follows[] @relation("follower")
+}
+
+model UserRecord {
+  id            String    @id @unique @default(cuid())
+  user          User      @relation(fields: [user_id], references: [sub])
+  user_id       String    @unique
+  level         Int       @default(1)
+  total_pages   Int       @default(0)
+  updated_at    DateTime? @default(now()) @updatedAt
 }
 
 model Book {
@@ -26,11 +36,11 @@ model Book {
   owner        User     @relation(fields: [user_id], references: [sub])
   user_id      String
   title        String
-  author       String?
-  image_url    String?
-  comment      String?
-  description  String?
-  page_count   Int?
+  author       String    @default("")
+  image_url    String    @default("")
+  comment      String    @default("")
+  description  String    @default("")
+  page_count   Int       @default(0)
   published_at DateTime?
   created_at   DateTime? @default(now())
   updated_at   DateTime? @default(now()) @updatedAt

@@ -8,6 +8,7 @@ import { Alert, AlertTitle, Box } from "@mui/material";
 import { FC, useEffect, useRef, useState } from "react";
 import ShelfStage from "@/components/shelf/ShelfStage";
 import ShelfBookUpdateDrawer from "@/components/shelf/ShelfBookUpdateDrawer";
+import Link from "next/link";
 
 type Props = {};
 const PER_PAGE_LIMIT = 12;
@@ -74,7 +75,20 @@ const ShelfContent: FC<Props> = () => {
           <Alert severity="info" sx={{ mt: 2 }}>
             <AlertTitle>Info</AlertTitle>
             <div>書籍が登録されていません。</div>
-            <div>追加してみましょう！</div>
+            <div>
+              <Link href="/search">
+                <span
+                  style={{
+                    textDecoration: "underline",
+                    fontWeight: "bold",
+                    color: "primary.main",
+                  }}
+                >
+                  検索画面
+                </span>
+              </Link>
+              から追加してみましょう！
+            </div>
           </Alert>
         )}
       </Box>
