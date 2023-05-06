@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import CreateUserUsecase from "@/usecases/CreateUserUsecase";
 import NextAuth, { Session } from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
@@ -24,16 +25,12 @@ export const authOptions: NextAuthOptions = {
       console.log("SignIn Callback");
       try {
         const user_id = user.id as string;
-        const upsertUser = await prisma.user.upsert({
-          where: { sub: user_id },
-          update: {},
-          create: {
-            sub: user_id,
-            email: user.email as string,
-            name: user.name as string,
-          },
+        const created = await new CreateUserUsecase().execute({
+          user_id,
+          email: user.email as string,
+          name: user.name as string,
         });
-        return !!upsertUser;
+        return !!created;
       } catch (e) {
         console.error(e);
         return false;
