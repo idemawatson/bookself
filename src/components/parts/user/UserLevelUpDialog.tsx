@@ -5,7 +5,6 @@ import {
   DialogTitle,
   Typography,
 } from "@mui/material";
-import BaseConfirmationDialog from "@/components/parts/common/BaseConfirmationDialog";
 import { useReward } from "react-rewards";
 import { useEffect } from "react";
 import { BaseButton } from "../common/BaseButton";
