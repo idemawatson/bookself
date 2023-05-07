@@ -17,7 +17,7 @@ const SearchBookForm: FC<Props> = ({ search, setUserInput }) => {
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}
-        placeholder="タイトルで検索"
+        placeholder="検索"
         onChange={($event) => setUserInput($event.target.value)}
       />
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical"></Divider>
