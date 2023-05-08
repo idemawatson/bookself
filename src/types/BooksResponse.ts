@@ -15,4 +15,5 @@ export type ClientBook = SearchBook & {
   comment?: string;
   status: BookStatuses;
   completedAt?: string;
+  rating: number;
 };
