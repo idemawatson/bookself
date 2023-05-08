@@ -40,6 +40,7 @@ model Book {
   image_url    String    @default("")
   comment      String    @default("")
   description  String    @default("")
+  rating       Int       @default(0)
   page_count   Int       @default(0)
   published_at DateTime?
   created_at   DateTime? @default(now())

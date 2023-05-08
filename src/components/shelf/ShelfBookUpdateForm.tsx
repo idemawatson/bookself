@@ -1,10 +1,15 @@
 import { FC, useEffect } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Rating, Typography } from "@mui/material";
 import { RhfDatePicker } from "@/components/parts/forms/DatePicker";
 import { RhfTextField } from "@/components/parts/forms/TextField";
 import BookStatusSelectField from "@/components/parts/books/BookStatusSelectField";
 import { BOOK_STATUSES, BookUpdateSchema } from "@/types/IBookForm";
-import { Control, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
 
 type Props = {
   control: Control<BookUpdateSchema, any>;
@@ -36,13 +41,32 @@ const ShelfBookUpdateForm: FC<Props> = ({ control, watch, setValue }) => {
             />
           )}
         </Grid>
+        {isCompleted && (
+          <Grid xs={12} sx={{ my: 1 }} item>
+            <Controller
+              control={control}
+              name={"rating"}
+              defaultValue={-1}
+              render={({ field: { onChange, value } }) => (
+                <>
+                  <Typography component="legend">評価</Typography>
+                  <Rating
+                    name={"rating"}
+                    onChange={onChange}
+                    value={Number(value)}
+                  />
+                </>
+              )}
+            />
+          </Grid>
+        )}
         <Grid xs={12} sx={{ my: 1 }} item>
           <RhfTextField
             label="メモ"
             name="comment"
             type="number"
             multiline
-            rows={10}
+            rows={8}
             control={control}
           />
         </Grid>

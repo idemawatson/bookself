@@ -26,6 +26,8 @@ const useUpdateBook = () => {
           form.status === BOOK_STATUSES.COMPLETED
             ? dayjs(form.completedAt).toDate()
             : undefined,
+        rating:
+          form.status === BOOK_STATUSES.COMPLETED ? form.rating : undefined,
       };
       const res = await client.patch<BookUpdateSchema, UpdateBookResponse>(
         `/books/${book.book_id}`,

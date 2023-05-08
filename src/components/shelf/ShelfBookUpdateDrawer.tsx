@@ -30,9 +30,10 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
     mode: "onChange",
     resolver: yupResolver(bookUpdateSchema),
     defaultValues: {
-      comment: book.comment || "",
+      comment: book.comment,
       status: book.status,
       completedAt: dayjs(book?.completedAt).toDate(),
+      rating: book.rating,
     },
   });
   const { updateBook } = useUpdateBook();

@@ -35,6 +35,7 @@ export default class UpdateBookUsecase {
           completed_at: isCompleted(body.status as number)
             ? body.completedAt
             : null,
+          rating: body.rating,
         },
       });
       //その他 -> COMPLETED に変更された場合レベルアップ
