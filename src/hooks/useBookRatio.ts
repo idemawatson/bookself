@@ -10,7 +10,7 @@ export const useBookRatio = (year: number) => {
   const { data, mutate } = useSWR(`ratio?year=${year}`, fetcher, {
     suspense: true,
     revalidateOnFocus: false,
-    revalidateOnMount: false,
+    revalidateOnMount: true,
     revalidateIfStale: false,
   });
 

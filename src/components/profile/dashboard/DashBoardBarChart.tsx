@@ -47,7 +47,7 @@ const DashboardBarChart: FC<Props> = ({ year }) => {
             />
             <YAxis
               label={{ value: "冊", position: "top", offset: 10 }}
-              width={10}
+              width={15}
               allowDecimals={false}
               tick={{ fontSize: "0.75rem" }}
             />

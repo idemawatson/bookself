@@ -19,6 +19,7 @@ model User {
   record     UserRecord?
   followedBy Follows[] @relation("following")
   following  Follows[] @relation("follower")
+  trophies   Trophy[]
 }
 
 model UserRecord {
@@ -57,4 +58,13 @@ model Follows {
   followingId String
 
   @@id([followerId, followingId])
+}
+
+model Trophy {
+  id         String        @id @unique @default(cuid())
+  owner      User          @relation(fields: [user_id], references: [sub])
+  user_id    String
+  trophy_id  String
+  created_at DateTime      @default(now())
+  @@unique([user_id, trophy_id], name: "trophy_id_on_user")
 }

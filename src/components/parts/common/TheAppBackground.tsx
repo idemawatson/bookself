@@ -7,7 +7,7 @@ const TheAppBackground: FC<{ children: ReactNode }> = ({ children }) => {
     <Box
       sx={{
         pt: 2,
-        height: "100vh",
+        height: "90vh",
         width: "100vw",
         overflow: "auto",
         bgcolor: grey[200],

@@ -1,7 +1,8 @@
-import { Divider, Paper, Tab, Tabs } from "@mui/material";
+import { Box, Divider, Paper, Tab, Tabs } from "@mui/material";
 import { FC, SyntheticEvent, useState } from "react";
 import UserRecordTemplate from "@/components/profile/userRecord/UserRecordTemplate";
 import DashboardTemplate from "@/components/profile/dashboard/DashboardTemplate";
+import TrophyTemplate from "@/components/profile/trophy/TrophyTemplate";
 
 type Props = {};
 const ProfileTemplate: FC<Props> = () => {
@@ -12,6 +13,7 @@ const ProfileTemplate: FC<Props> = () => {
   const renderContent = () => {
     if (tab === 0) return <UserRecordTemplate />;
     if (tab === 1) return <DashboardTemplate />;
+    if (tab === 2) return <TrophyTemplate />;
   };
   return (
     <>
@@ -29,10 +31,11 @@ const ProfileTemplate: FC<Props> = () => {
         >
           <Tab label="レベル" />
           <Tab label="読書記録" />
+          <Tab label="トロフィー" />
         </Tabs>
         <Divider />
       </Paper>
-      {renderContent()}
+      <Box sx={{ maxHeight: "90%", overflowY: "auto" }}>{renderContent()}</Box>
     </>
   );
 };
