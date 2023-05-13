@@ -14,6 +14,7 @@ type Props = {
     | "warning";
   disabled?: boolean;
   size?: "large" | "medium" | "small";
+  variant?: "contained" | "outlined" | "text";
   sx?: any;
   className?: string;
   children: ReactNode;
@@ -25,6 +26,7 @@ export const BaseButton: FC<Props> = ({
   color,
   disabled,
   size,
+  variant = "contained",
   sx,
   className,
   children,
@@ -32,11 +34,11 @@ export const BaseButton: FC<Props> = ({
   return (
     <Button
       type={submit ? "submit" : undefined}
-      variant="contained"
       disableElevation
       color={color}
       disabled={disabled}
       size={size}
+      variant={variant}
       sx={sx}
       className={className}
       onClick={onClick}
