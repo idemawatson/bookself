@@ -23,7 +23,7 @@ const AxiosClientProvider: React.FC<Props> = ({ children }) => {
         throw error;
       }
     );
-  }, []);
+  }, [router]);
 
   return <>{children}</>;
 };

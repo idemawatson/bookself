@@ -1,5 +1,6 @@
 import { ClientBook } from "@/types/BooksResponse";
 import { Box, Grid, styled } from "@mui/material";
+import Image from "next/image";
 import { FC } from "react";
 
 type Props = {
@@ -18,11 +19,12 @@ const ShelfStage: FC<Props> = ({ books, onClickBook }) => {
   const stage = books.map((book) => (
     <Grid item xs={4} key={book.id} sx={{ px: 0.5 }}>
       <Box onClick={() => onClickBook(book)}>
-        <img
+        <Image
           src={`${book.imageUrl}?fit=crop&auto=format`}
+          alt={book.title}
           loading="lazy"
           height={160}
-          width="100%"
+          width={100}
         />
       </Box>
     </Grid>
