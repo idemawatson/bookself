@@ -22,7 +22,7 @@ export default class CreateUserUsecase {
         record: {
           create: {
             level: 1,
-            totalPages: 0,
+            total_pages: 0,
           },
         },
       },
