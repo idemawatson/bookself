@@ -18,6 +18,9 @@ const nextConfig = withPWA({
       },
     ];
   },
+  images: {
+    domains: ["books.google.com"],
+  },
 });
 
 module.exports = nextConfig;

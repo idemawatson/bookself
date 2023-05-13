@@ -24,7 +24,7 @@ const ShelfBookUpdateForm: FC<Props> = ({ control, watch, setValue }) => {
     if (!isCompleted) {
       setValue("completedAt", undefined);
     }
-  }, [isCompleted]);
+  }, [isCompleted, setValue]);
   return (
     <>
       <Grid container columnSpacing={1}>

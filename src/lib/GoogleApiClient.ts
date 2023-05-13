@@ -11,4 +11,5 @@ class GoogleAPIClient extends BaseAPIClient {
   }
 }
 
-export default new GoogleAPIClient();
+const googleApiClient = new GoogleAPIClient();
+export default googleApiClient;

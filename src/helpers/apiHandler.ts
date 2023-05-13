@@ -15,7 +15,7 @@ type Handlers = {
   [key in HttpMethod]?: NextApiHandler;
 };
 
-export default (handlers: Handlers) => {
+const apiHandler = (handlers: Handlers) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     const { method } = req;
     console.debug(`REQUEST BODY: ${JSON.stringify(req.body)}`);
@@ -55,3 +55,5 @@ export default (handlers: Handlers) => {
     }
   };
 };
+
+export default apiHandler;

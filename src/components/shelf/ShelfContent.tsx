@@ -33,9 +33,9 @@ const ShelfContent: FC<Props> = () => {
 
   useEffect(() => {
     if (intersection && !isReachingEnd) {
-      getBooks();
+      setSize(size + 1);
     }
-  }, [intersection, isReachingEnd]);
+  }, [intersection, isReachingEnd, size, setSize]);
 
   const open = (book: ClientBook) => {
     setOpenCount(openCount + 1);
@@ -43,11 +43,6 @@ const ShelfContent: FC<Props> = () => {
     setDrawer(true);
   };
   if (!data) return <></>;
-
-  // 次のデータの取得
-  const getBooks = async () => {
-    setSize(size + 1);
-  };
 
   const books = data.flat();
 

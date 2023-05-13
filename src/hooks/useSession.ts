@@ -19,7 +19,7 @@ const useSession = () => {
     } else {
       hideLoading();
     }
-  }, [session.status]);
+  }, [session.status, showLoading, hideLoading]);
 
   return session.data;
 };
