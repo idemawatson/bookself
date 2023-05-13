@@ -1,4 +1,4 @@
-import { MenuBook, PermIdentity, Search } from "@mui/icons-material";
+import { MenuBook, PermIdentity, Search, Settings } from "@mui/icons-material";
 import { Paper } from "@mui/material";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
@@ -40,6 +40,11 @@ const LabelBottomNavigation: FC = () => {
           label="記録"
           value="profile"
           icon={<PermIdentity />}
+        />
+        <BottomNavigationAction
+          label="設定"
+          value="settings"
+          icon={<Settings />}
         />
       </BottomNavigation>
     </Paper>
