@@ -68,7 +68,7 @@ const DashboardRatioChart: FC<Props> = ({ year }) => {
       >
         本棚の割合
       </Typography>
-      <div style={{ height: "300px", width: "100%" }}>
+      <div style={{ height: "250px", width: "100%" }}>
         <ResponsiveContainer height="100%" width="100%">
           <PieChart>
             <Pie

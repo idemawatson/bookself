@@ -10,7 +10,7 @@ export const useTrophies = () => {
   const { data, mutate } = useSWR(`trophies`, fetcher, {
     suspense: true,
     revalidateOnFocus: false,
-    revalidateOnMount: false,
+    revalidateOnMount: true,
     revalidateIfStale: false,
   });
 

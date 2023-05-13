@@ -1,4 +1,4 @@
-import { Divider, Paper, Tab, Tabs } from "@mui/material";
+import { Box, Divider, Paper, Tab, Tabs } from "@mui/material";
 import { FC, SyntheticEvent, useState } from "react";
 import UserRecordTemplate from "@/components/profile/userRecord/UserRecordTemplate";
 import DashboardTemplate from "@/components/profile/dashboard/DashboardTemplate";
@@ -35,7 +35,7 @@ const ProfileTemplate: FC<Props> = () => {
         </Tabs>
         <Divider />
       </Paper>
-      {renderContent()}
+      <Box sx={{ maxHeight: "90%", overflowY: "auto" }}>{renderContent()}</Box>
     </>
   );
 };

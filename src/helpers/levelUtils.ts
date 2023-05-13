@@ -32,7 +32,8 @@ export const getRestPages = (
 };
 
 export const getProgress = (level: number, totalPages: number): number => {
+  const pageToNext = getNextLevelPages(level);
   return Math.floor(
-    (getRestPages(level, totalPages) / getNextLevelPages(level)) * 100
+    ((pageToNext - getRestPages(level, totalPages)) / pageToNext) * 100
   );
 };

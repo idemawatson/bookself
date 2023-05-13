@@ -10,7 +10,7 @@ export const useUserRecord = () => {
   const { data, mutate } = useSWR(`userRecord`, fetcher, {
     suspense: true,
     revalidateOnFocus: false,
-    revalidateOnMount: false,
+    revalidateOnMount: true,
     revalidateIfStale: false,
   });
 
