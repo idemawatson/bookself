@@ -22,7 +22,7 @@ const TrophyArchivedDialog: React.FC<Props> = ({
   return (
     <Dialog open={dialog} onClose={close} fullWidth>
       <DialogTitle>新たにトロフィーを獲得しました！</DialogTitle>
-      <DialogContent>
+      <DialogContent dividers>
         {newTrophies.map((trophy) => (
           <Typography key={trophy.trophy_id} variant="body1">
             {trophy.name}
@@ -30,7 +30,7 @@ const TrophyArchivedDialog: React.FC<Props> = ({
         ))}
       </DialogContent>
       <DialogActions>
-        <BaseButton color="primary" onClick={close}>
+        <BaseButton color="secondary" onClick={close}>
           OK
         </BaseButton>
       </DialogActions>

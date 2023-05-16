@@ -4,11 +4,11 @@ import { BaseButton } from "@/components/parts/common/BaseButton";
 const SignInButton = () => {
   return (
     <BaseButton
-      color="primary"
+      color="negative"
       onClick={() => {
         signIn("google", { callbackUrl: "/shelf" });
       }}
-      sx={{ fontSize: "1.5rem" }}
+      sx={{ fontSize: "1rem" }}
     >
       ログイン
     </BaseButton>

@@ -16,7 +16,11 @@ const MyThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
         contrastText: "#fff",
       },
       secondary: {
-        main: "#00171f",
+        main: "#f79520",
+        contrastText: "#fff",
+      },
+      negative: {
+        main: "#37474F",
         contrastText: "#fff",
       },
     },

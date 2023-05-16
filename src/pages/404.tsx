@@ -8,7 +8,7 @@ export default function Custom500() {
     <Error404>
       <BaseButton
         sx={{ my: 1 }}
-        color="secondary"
+        color="negative"
         onClick={() => router.push("/shelf")}
       >
         本棚に戻る
