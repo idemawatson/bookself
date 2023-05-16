@@ -11,7 +11,8 @@ type Props = {
     | "error"
     | "success"
     | "info"
-    | "warning";
+    | "warning"
+    | "negative";
   disabled?: boolean;
   size?: "large" | "medium" | "small";
   variant?: "contained" | "outlined" | "text";

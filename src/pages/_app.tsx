@@ -39,7 +39,7 @@ const MyApp: FC<AppPropsWithLayout> = ({
       <Error500>
         <BaseButton
           sx={{ my: 1 }}
-          color="secondary"
+          color="negative"
           onClick={() => window.location.reload()}
         >
           再読み込み

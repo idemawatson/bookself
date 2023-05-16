@@ -11,7 +11,6 @@ const ShelfTemplate: FC<Props> = ({}) => {
   return (
     <Container sx={{ pb: 10 }}>
       <ShelfFilterTabs />
-      <ShelfHeader />
       <Suspense fallback={<SkeletonShelfPage />}>
         <ShelfPage />
       </Suspense>

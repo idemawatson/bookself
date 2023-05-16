@@ -32,7 +32,7 @@ const UserLevelUpDialog: React.FC<Props> = ({ dialog, close, level }) => {
     <div id="alert-dialog-title">
       <Dialog open={dialog} onClose={close} fullWidth>
         <DialogTitle>おめでとうございます</DialogTitle>
-        <DialogContent>
+        <DialogContent dividers>
           <Typography variant="body1">
             <span>
               あなたのレベルは
@@ -47,7 +47,7 @@ const UserLevelUpDialog: React.FC<Props> = ({ dialog, close, level }) => {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <BaseButton color="primary" onClick={close}>
+          <BaseButton color="secondary" onClick={close}>
             OK
           </BaseButton>
         </DialogActions>

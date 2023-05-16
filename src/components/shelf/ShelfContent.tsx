@@ -9,6 +9,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import ShelfStage from "@/components/shelf/ShelfStage";
 import ShelfBookUpdateDrawer from "@/components/shelf/ShelfBookUpdateDrawer";
 import Link from "next/link";
+import ShelfHeader from "./ShelfHeader";
 
 type Props = {};
 const PER_PAGE_LIMIT = 12;
@@ -55,6 +56,7 @@ const ShelfContent: FC<Props> = () => {
 
   return (
     <>
+      {books.length > 0 && <ShelfHeader />}
       {[...Array(rowSize)].map((_, i) => (
         <ShelfStage
           onClickBook={open}

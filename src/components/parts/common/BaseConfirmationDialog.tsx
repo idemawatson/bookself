@@ -27,10 +27,14 @@ const BaseConfirmationDialog: FC<Props> = ({
   return (
     <Dialog open={open} onClose={handleClose} fullWidth>
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
-      <DialogContent>{children}</DialogContent>
+      <DialogContent dividers>{children}</DialogContent>
       <DialogActions>
-        {disableCancel || <Button onClick={handleClose}>キャンセル</Button>}
-        <BaseButton color="primary" onClick={handleAgree}>
+        {disableCancel || (
+          <Button onClick={handleClose} color="negative">
+            キャンセル
+          </Button>
+        )}
+        <BaseButton color="secondary" onClick={handleAgree}>
           OK
         </BaseButton>
       </DialogActions>

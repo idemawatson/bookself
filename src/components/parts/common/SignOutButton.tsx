@@ -4,7 +4,7 @@ import { BaseButton } from "@/components/parts/common/BaseButton";
 const SignOutButton = () => {
   return (
     <BaseButton
-      color="error"
+      color="negative"
       onClick={() =>
         signOut({
           callbackUrl: `${

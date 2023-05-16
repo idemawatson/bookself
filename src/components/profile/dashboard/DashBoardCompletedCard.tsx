@@ -1,8 +1,10 @@
 import {
+  Box,
   Card,
   CardContent,
   CardHeader,
   Grid,
+  IconButton,
   Skeleton,
   Typography,
 } from "@mui/material";
@@ -25,10 +27,24 @@ const DashboardCompletedCard = () => {
             sx={{ textAlign: "right" }}
             onClick={() => setYear(year - 1)}
           >
-            <ChevronLeft color="primary" />
+            <IconButton size="large">
+              <ChevronLeft color="primary" />
+            </IconButton>
           </Grid>
-          <Grid item xs={8} sx={{ textAlign: "center" }}>
-            <Typography color="primary.main">{year}年</Typography>
+          <Grid item xs={8}>
+            <Box
+              sx={{
+                display: "flex",
+                direction: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+              }}
+            >
+              <Typography color="negative" sx={{ fontWeight: 500 }}>
+                {year}年
+              </Typography>
+            </Box>
           </Grid>
           <Grid
             item
@@ -36,7 +52,9 @@ const DashboardCompletedCard = () => {
             sx={{ textAlign: "left" }}
             onClick={() => setYear(year + 1)}
           >
-            <ChevronRight color="primary" />
+            <IconButton size="large">
+              <ChevronRight color="primary" />
+            </IconButton>
           </Grid>
         </Grid>
         <Suspense fallback={<Skeleton height={250} width="100%" />}>
