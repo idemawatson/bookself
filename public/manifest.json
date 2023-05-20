@@ -6,7 +6,7 @@
   "start_url": "/",
   "name": "bookself",
   "short_name": "bookself",
-  "description": "Mange books by yourself",
+  "description": "Manage books by yourself",
   "icons": [
     {
       "src": "/icon-192x192.png",
