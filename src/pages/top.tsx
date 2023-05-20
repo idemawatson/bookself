@@ -16,9 +16,9 @@ const Home = () => {
       <Grid container>
         <Grid item textAlign={'center'} xs={12}>
           <Image
-            src={'/logo.png'}
+            src='/logo.png'
             alt='boolself'
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            // sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             width={300}
             height={250}
           />
