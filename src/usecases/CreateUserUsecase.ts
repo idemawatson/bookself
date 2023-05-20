@@ -1,8 +1,6 @@
 import prisma from '@/lib/prisma'
 
 export default class CreateUserUsecase {
-  constructor() {}
-
   async execute({
     user_id,
     email,

@@ -6,7 +6,7 @@ import { StatisticsResponse } from '@/types/StatisticsResponse'
 
 type RawData = {
   month: string
-  book_count: BigInt
+  book_count: bigint
 }[]
 
 const MONTHS = [
@@ -25,8 +25,6 @@ const MONTHS = [
 ]
 
 export default class GetStatisticsController {
-  constructor() {}
-
   async execute({
     user_id,
     year,

@@ -1,8 +1,7 @@
 import { FC } from 'react'
 import DashboardCompletedCard from './DashBoardCompletedCard'
 
-type Props = {}
-const DashboardTemplate: FC<Props> = () => {
+const DashboardTemplate: FC = () => {
   return (
     <>
       <DashboardCompletedCard />

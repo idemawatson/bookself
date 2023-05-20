@@ -3,8 +3,13 @@
     "next/core-web-vitals",
     "plugin:import/recommended",
     "plugin:import/warnings",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
+  "parserOptions": {
+    "project": true,
+    "tsconfigRootDir": "__dirname"
+  },
   "rules": {
     "import/order": [
       "error",
@@ -14,6 +19,10 @@
         }
       }
     ],
-    "import/named": 0
+    "import/named": 0,
+    "import/namespace": 0,
+    "import/default": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0
   }
 }

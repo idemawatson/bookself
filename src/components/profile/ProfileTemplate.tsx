@@ -4,8 +4,7 @@ import DashboardTemplate from '@/components/profile/dashboard/DashboardTemplate'
 import TrophyTemplate from '@/components/profile/trophy/TrophyTemplate'
 import UserRecordTemplate from '@/components/profile/userRecord/UserRecordTemplate'
 
-type Props = {}
-const ProfileTemplate: FC<Props> = () => {
+const ProfileTemplate: FC = () => {
   const [tab, setTab] = useState(0)
   const handleChange = (_: SyntheticEvent<Element, Event>, value: number) => {
     setTab(value)

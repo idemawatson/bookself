@@ -2,8 +2,6 @@ import { ValidationError } from '@/helpers/apiErrors'
 import dayjs from '@/lib/importDayjs'
 import prisma from '@/lib/prisma'
 import { BookRatioResponse } from '@/types/BookRatioResponse'
-import { BOOK_STATUSES } from '@/types/IBookForm'
-import { StatisticsResponse } from '@/types/StatisticsResponse'
 
 type RawData = {
   status: number
@@ -11,8 +9,6 @@ type RawData = {
 }[]
 
 export default class GetBookRatioController {
-  constructor() {}
-
   async execute({
     user_id,
     year,

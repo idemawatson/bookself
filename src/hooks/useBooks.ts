@@ -5,7 +5,7 @@ import { ClientBook } from '@/types/BooksResponse'
 export const useBooks = (status?: number) => {
   const getKey = (pageIndex: number, previousPageData: ClientBook[]) => {
     if (previousPageData && !previousPageData.length) return null
-    let url = `books?page=${pageIndex + 1}`
+    const url = `books?page=${pageIndex + 1}`
     return status != null ? `${url}&status=${status}` : url
   }
   const fetcher = async (url: string): Promise<ClientBook[]> => {

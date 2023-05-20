@@ -5,7 +5,6 @@ import { CreateBookRequest } from '@/types/CreateBookRequest'
 import { BOOK_STATUSES } from '@/types/IBookForm'
 
 export default class CreateBookUsecase {
-  constructor() {}
   async execute({
     user_id,
     body,

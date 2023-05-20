@@ -3,8 +3,6 @@ import { calcLevel } from '@/helpers/levelUtils'
 import prisma from '@/lib/prisma'
 
 export default class UserProfilceLevelUpService {
-  constructor() {}
-
   async execute({
     user_id,
     pageCount,

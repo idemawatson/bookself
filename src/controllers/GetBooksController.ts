@@ -4,7 +4,6 @@ import prisma from '@/lib/prisma'
 import { ClientBook } from '@/types/BooksResponse'
 
 export default class GetBooksController {
-  constructor() {}
   PER_PAGE = 12
 
   async execute({

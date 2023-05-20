@@ -11,10 +11,9 @@ import { useIntersection } from '@/hooks/useIntersection'
 import { useSelectedBook } from '@/hooks/useSelectedBook'
 import { ClientBook } from '@/types/BooksResponse'
 
-type Props = {}
 const PER_PAGE_LIMIT = 12
 
-const ShelfContent: FC<Props> = () => {
+const ShelfContent: FC = () => {
   const ref = useRef<HTMLDivElement>(
     null,
   ) as React.MutableRefObject<HTMLDivElement>

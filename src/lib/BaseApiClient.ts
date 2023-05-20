@@ -17,7 +17,7 @@ export default class BaseApiClient {
   async put<T, U>(path: string, body: T): Promise<AxiosResponse<U>> {
     return await this._client.put(path, body)
   }
-  async delete<T, U>(path: string): Promise<AxiosResponse<U>> {
+  async delete<T>(path: string): Promise<AxiosResponse<T>> {
     return await this._client.delete(path)
   }
 }
