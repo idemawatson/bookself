@@ -1,41 +1,36 @@
-import {
-  FieldValues,
-  useController,
-  UseControllerProps,
-} from "react-hook-form";
-
+import { TextField } from '@mui/material'
 import {
   LocalizationProvider,
   MobileDatePicker,
   MobileDatePickerProps,
-} from "@mui/x-date-pickers";
-import { TextField } from "@mui/material";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Dayjs } from "dayjs";
+} from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { Dayjs } from 'dayjs'
+import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 
 export type RhfDatePickerProps<T extends FieldValues> = Omit<
   MobileDatePickerProps<Dayjs, Dayjs>,
-  "onChange" | "renderInput" | "value"
+  'onChange' | 'renderInput' | 'value'
 > &
-  UseControllerProps<T>;
+  UseControllerProps<T>
 
 /**
  * react-hook-formラッパー
  */
 export const RhfDatePicker = <T extends FieldValues>(
-  props: RhfDatePickerProps<T>
+  props: RhfDatePickerProps<T>,
 ) => {
   const { name, control, label, maxDate, minDate, disableFuture, disabled } =
-    props;
-  const { field, fieldState } = useController<T>({ name, control });
+    props
+  const { field, fieldState } = useController<T>({ name, control })
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <MobileDatePicker
         label={label}
-        inputFormat="YYYY/MM/DD"
-        toolbarTitle="日付選択"
-        toolbarFormat="YYYY/MM/DD"
+        inputFormat='YYYY/MM/DD'
+        toolbarTitle='日付選択'
+        toolbarFormat='YYYY/MM/DD'
         maxDate={maxDate}
         minDate={minDate}
         disableFuture={disableFuture}
@@ -51,5 +46,5 @@ export const RhfDatePicker = <T extends FieldValues>(
         {...field}
       />
     </LocalizationProvider>
-  );
-};
+  )
+}

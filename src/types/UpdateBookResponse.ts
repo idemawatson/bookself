@@ -1,6 +1,6 @@
-import { ClientBook } from "./BooksResponse";
+import { ClientBook } from './BooksResponse'
 
 export type UpdateBookResponse = {
-  updated: ClientBook;
-  newLevel: number | null;
-};
+  updated: ClientBook
+  newLevel: number | null
+}

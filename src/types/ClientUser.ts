@@ -1,3 +1,3 @@
 export type ClientUser = {
-  name: string;
-};
+  name: string
+}

@@ -1,15 +1,15 @@
-import BaseAPIClient from "@/lib/BaseApiClient";
+import BaseAPIClient from '@/lib/BaseApiClient'
 
 class GoogleAPIClient extends BaseAPIClient {
   constructor() {
     super({
-      baseURL: "https://www.googleapis.com",
+      baseURL: 'https://www.googleapis.com',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
-    });
+    })
   }
 }
 
-const googleApiClient = new GoogleAPIClient();
-export default googleApiClient;
+const googleApiClient = new GoogleAPIClient()
+export default googleApiClient

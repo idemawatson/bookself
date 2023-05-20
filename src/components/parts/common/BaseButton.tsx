@@ -1,25 +1,25 @@
-import { Button } from "@mui/material";
-import { FC, ReactNode } from "react";
+import { Button } from '@mui/material'
+import { FC, ReactNode } from 'react'
 
 type Props = {
-  onClick?: () => void;
-  submit?: boolean;
+  onClick?: () => void
+  submit?: boolean
   color:
-    | "inherit"
-    | "primary"
-    | "secondary"
-    | "error"
-    | "success"
-    | "info"
-    | "warning"
-    | "negative";
-  disabled?: boolean;
-  size?: "large" | "medium" | "small";
-  variant?: "contained" | "outlined" | "text";
-  sx?: any;
-  className?: string;
-  children: ReactNode;
-};
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'error'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | 'negative'
+  disabled?: boolean
+  size?: 'large' | 'medium' | 'small'
+  variant?: 'contained' | 'outlined' | 'text'
+  sx?: any
+  className?: string
+  children: ReactNode
+}
 
 export const BaseButton: FC<Props> = ({
   onClick,
@@ -27,14 +27,14 @@ export const BaseButton: FC<Props> = ({
   color,
   disabled,
   size,
-  variant = "contained",
+  variant = 'contained',
   sx,
   className,
   children,
 }) => {
   return (
     <Button
-      type={submit ? "submit" : undefined}
+      type={submit ? 'submit' : undefined}
       disableElevation
       color={color}
       disabled={disabled}
@@ -46,5 +46,5 @@ export const BaseButton: FC<Props> = ({
     >
       {children}
     </Button>
-  );
-};
+  )
+}

@@ -1,33 +1,32 @@
-import BookCard from "@/components/parts/books/BookCard";
-import { ClientBook } from "@/types/BooksResponse";
-import { BookUpdateSchema, bookUpdateSchema } from "@/types/IBookForm";
-import { Box, Button, Grid, SwipeableDrawer } from "@mui/material";
-import { useForm } from "react-hook-form";
-import ShelfBookUpdateForm from "@/components/shelf/ShelfBookUpdateForm";
-import { BaseButton } from "@/components/parts/common/BaseButton";
-import dayjs from "@/lib/importDayjs";
-import { KeyedMutator } from "swr";
-import { useSelectedBook } from "@/hooks/useSelectedBook";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-import useUpdateBook from "@/hooks/shelf/useUpdateBook";
-import UserLevelUpDialog from "@/components/parts/user/UserLevelUpDialog";
-import { useState } from "react";
+import { yupResolver } from '@hookform/resolvers/yup'
+import { Box, Button, Grid, SwipeableDrawer } from '@mui/material'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { KeyedMutator } from 'swr'
+import BookCard from '@/components/parts/books/BookCard'
+import { BaseButton } from '@/components/parts/common/BaseButton'
+import UserLevelUpDialog from '@/components/parts/user/UserLevelUpDialog'
+import ShelfBookUpdateForm from '@/components/shelf/ShelfBookUpdateForm'
+import useUpdateBook from '@/hooks/shelf/useUpdateBook'
+import { useSelectedBook } from '@/hooks/useSelectedBook'
+import dayjs from '@/lib/importDayjs'
+import { ClientBook } from '@/types/BooksResponse'
+import { BookUpdateSchema, bookUpdateSchema } from '@/types/IBookForm'
 
 type Props = {
-  drawer: boolean;
-  setOpen: (value: boolean) => void;
-  mutate: KeyedMutator<ClientBook[][]>;
-};
+  drawer: boolean
+  setOpen: (value: boolean) => void
+  mutate: KeyedMutator<ClientBook[][]>
+}
 
 const ShelfBookUpdateDrawer: React.FC<Props> = ({
   drawer,
   setOpen,
   mutate,
 }) => {
-  const { selectedBook: book } = useSelectedBook();
+  const { selectedBook: book } = useSelectedBook()
   const formMethods = useForm<BookUpdateSchema>({
-    mode: "onChange",
+    mode: 'onChange',
     resolver: yupResolver(bookUpdateSchema),
     defaultValues: {
       comment: book.comment,
@@ -35,27 +34,27 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
       completedAt: dayjs(book?.completedAt).toDate(),
       rating: book.rating,
     },
-  });
-  const { updateBook } = useUpdateBook();
-  const [newLevel, setNewLevel] = useState<number | null>(null);
+  })
+  const { updateBook } = useUpdateBook()
+  const [newLevel, setNewLevel] = useState<number | null>(null)
 
   const handleSubmit = async (form: BookUpdateSchema) => {
-    const res = await updateBook(form, mutate);
+    const res = await updateBook(form, mutate)
     if (res && !!res.newLevel) {
-      setNewLevel(res.newLevel);
+      setNewLevel(res.newLevel)
     }
-    close();
-  };
+    close()
+  }
 
   const close = () => {
-    setOpen(false);
-    formMethods.reset();
-  };
+    setOpen(false)
+    formMethods.reset()
+  }
 
   return (
     <>
       <SwipeableDrawer
-        anchor="bottom"
+        anchor='bottom'
         open={drawer}
         onOpen={() => setOpen(true)}
         onClose={close}
@@ -74,15 +73,15 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
                   />
                 </Box>
                 <Grid container>
-                  <Grid item xs={6} sx={{ textAlign: "left" }}>
+                  <Grid item xs={6} sx={{ textAlign: 'left' }}>
                     <Button disableElevation onClick={close}>
                       閉じる
                     </Button>
                   </Grid>
-                  <Grid item xs={6} sx={{ textAlign: "right" }}>
+                  <Grid item xs={6} sx={{ textAlign: 'right' }}>
                     <BaseButton
                       submit={true}
-                      color="secondary"
+                      color='secondary'
                       disabled={!formMethods.formState.isValid}
                     >
                       更新
@@ -100,7 +99,7 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
         close={() => setNewLevel(null)}
       />
     </>
-  );
-};
+  )
+}
 
-export default ShelfBookUpdateDrawer;
+export default ShelfBookUpdateDrawer

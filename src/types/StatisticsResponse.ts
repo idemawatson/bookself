@@ -1,4 +1,4 @@
 export type StatisticsResponse = {
-  month: string;
-  count: number;
-}[];
+  month: string
+  count: number
+}[]

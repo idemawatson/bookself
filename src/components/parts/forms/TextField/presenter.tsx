@@ -5,32 +5,32 @@ import {
   TextField as MUITextField,
   // eslint-disable-next-line
   TextFieldProps as MUITextFieldProps,
-} from "@mui/material";
-import type { ChangeEventHandler, FocusEventHandler, ReactNode } from "react";
+} from '@mui/material'
+import type { ChangeEventHandler, FocusEventHandler, ReactNode } from 'react'
 
 export type TextFieldProps = {
-  error?: string;
-  className?: string;
-  placeholder?: string;
-  label?: string;
-  type?: string;
-  multiline?: boolean;
-  rows?: number;
-  endAdornment?: ReactNode;
-  startAdornment?: ReactNode;
-};
+  error?: string
+  className?: string
+  placeholder?: string
+  label?: string
+  type?: string
+  multiline?: boolean
+  rows?: number
+  endAdornment?: ReactNode
+  startAdornment?: ReactNode
+}
 
 const StyledFormControl = styled(FormControl)({
-  width: "100%",
-});
+  width: '100%',
+})
 
 export const TextField = (
   props: TextFieldProps & {
-    inputRef?: MUITextFieldProps["inputRef"];
-    value: string;
-    onChange: ChangeEventHandler<HTMLTextAreaElement>;
-    onBlur?: FocusEventHandler<HTMLTextAreaElement>;
-  }
+    inputRef?: MUITextFieldProps['inputRef']
+    value: string
+    onChange: ChangeEventHandler<HTMLTextAreaElement>
+    onBlur?: FocusEventHandler<HTMLTextAreaElement>
+  },
 ) => {
   return (
     <>
@@ -54,5 +54,5 @@ export const TextField = (
       </StyledFormControl>
       {!!props.error && <FormHelperText error>{props.error}</FormHelperText>}
     </>
-  );
-};
+  )
+}

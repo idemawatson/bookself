@@ -1,19 +1,19 @@
-import { Alert, Snackbar } from "@mui/material";
-import { FC } from "react";
-import { useNotification } from "@/hooks/useNotification";
+import { Alert, Snackbar } from '@mui/material'
+import { FC } from 'react'
+import { useNotification } from '@/hooks/useNotification'
 
 export const TheNotificationToast: FC = () => {
-  const { notification } = useNotification();
+  const { notification } = useNotification()
   return (
     <>
       <Snackbar
         open={notification.visible}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
       >
-        <Alert variant="filled" severity={notification.severity}>
+        <Alert variant='filled' severity={notification.severity}>
           {notification.message}
         </Alert>
       </Snackbar>
     </>
-  );
-};
+  )
+}

@@ -1,23 +1,23 @@
-import { TROPHY_RANKS, TROPHY_RANK_NAME } from "@/constants/trophies";
-import { ClientTrophy } from "@/types/ClientTrophy";
-import Image from "next/image";
+import Image from 'next/image'
+import { TROPHY_RANKS, TROPHY_RANK_NAME } from '@/constants/trophies'
+import { ClientTrophy } from '@/types/ClientTrophy'
 
 type Props = {
-  trophy: ClientTrophy;
-};
+  trophy: ClientTrophy
+}
 const TrophyImage: React.FC<Props> = ({ trophy }) => {
   const getRank = () => {
     switch (trophy.rank) {
       case TROPHY_RANKS.BRONZE:
-        return "bronze";
+        return 'bronze'
       case TROPHY_RANKS.SILVER:
-        return "silver";
+        return 'silver'
       case TROPHY_RANKS.GOLD:
-        return "gold";
+        return 'gold'
       case TROPHY_RANKS.PLATINUM:
-        return "platinum";
+        return 'platinum'
     }
-  };
+  }
   return (
     <>
       <Image
@@ -27,7 +27,7 @@ const TrophyImage: React.FC<Props> = ({ trophy }) => {
         height={100}
       />
     </>
-  );
-};
+  )
+}
 
-export default TrophyImage;
+export default TrophyImage

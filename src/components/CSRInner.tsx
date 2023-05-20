@@ -1,5 +1,5 @@
 const CSRInner = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
-  return <>{children}</>;
-};
+  return <>{children}</>
+}
 
-export default CSRInner;
+export default CSRInner

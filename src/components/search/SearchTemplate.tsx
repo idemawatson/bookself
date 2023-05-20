@@ -1,42 +1,42 @@
-import { Box, Container } from "@mui/material";
-import { FC, useState } from "react";
+import { Box, Container } from '@mui/material'
+import { FC, useState } from 'react'
 
-import { useSearchBook } from "@/hooks/useSearchBook";
-import BookCard from "@/components/parts/books/BookCard";
-import { SearchBook } from "@/types/BooksResponse";
-import BookAddConfirmationDialog from "@/components/search/SearchBookAddConfirmationDialog";
-import SearchBookForm from "@/components/search/SearchBookForm";
-import BaseCircularProgress from "@/components/parts/common/BaseCircularProgress";
-import SearchFirstCaption from "./SearchFirstCaption";
-import SearchNotFoundCaption from "./SearchNotFoundCaption";
+import SearchFirstCaption from './SearchFirstCaption'
+import SearchNotFoundCaption from './SearchNotFoundCaption'
+import BookCard from '@/components/parts/books/BookCard'
+import BaseCircularProgress from '@/components/parts/common/BaseCircularProgress'
+import BookAddConfirmationDialog from '@/components/search/SearchBookAddConfirmationDialog'
+import SearchBookForm from '@/components/search/SearchBookForm'
+import { useSearchBook } from '@/hooks/useSearchBook'
+import { SearchBook } from '@/types/BooksResponse'
 
-const INDICATOR_SIZE = 40;
+const INDICATOR_SIZE = 40
 
 const SearchTemplate: FC = () => {
-  const [userInput, setUserInput] = useState("");
-  const [searchWord, setSearchWord] = useState("");
+  const [userInput, setUserInput] = useState('')
+  const [searchWord, setSearchWord] = useState('')
   const [selectedBook, setSelectedBook] = useState<SearchBook | undefined>(
-    undefined
-  );
-  const [isNotSearched, setIsNotSearched] = useState(true);
+    undefined,
+  )
+  const [isNotSearched, setIsNotSearched] = useState(true)
 
-  const { data } = useSearchBook(searchWord);
+  const { data } = useSearchBook(searchWord)
 
   const search = ($event: React.FormEvent<HTMLFormElement>) => {
-    $event.preventDefault();
-    setIsNotSearched(false);
-    setSearchWord(userInput);
-  };
+    $event.preventDefault()
+    setIsNotSearched(false)
+    setSearchWord(userInput)
+  }
 
   const openConfirm = (book: SearchBook) => {
-    setSelectedBook(book);
-  };
+    setSelectedBook(book)
+  }
 
   return (
     <>
-      <Container sx={{ height: "100%" }}>
+      <Container sx={{ height: '100%' }}>
         <SearchBookForm search={search} setUserInput={setUserInput} />
-        <Box sx={{ overflowY: "auto", maxHeight: "80%", mt: 2 }}>
+        <Box sx={{ overflowY: 'auto', maxHeight: '80%', mt: 2 }}>
           {isNotSearched && <SearchFirstCaption />}
           {!!searchWord && data?.length == 0 && <SearchNotFoundCaption />}
           {!data && <BaseCircularProgress indicator_size={INDICATOR_SIZE} />}
@@ -52,7 +52,7 @@ const SearchTemplate: FC = () => {
         book={selectedBook}
       />
     </>
-  );
-};
+  )
+}
 
-export default SearchTemplate;
+export default SearchTemplate

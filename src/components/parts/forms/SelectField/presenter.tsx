@@ -5,24 +5,24 @@ import {
   MenuItem,
   Select,
   styled,
-} from "@mui/material";
-import type { SelectProps as MUISelectProps } from "@mui/material";
+} from '@mui/material'
+import type { SelectProps as MUISelectProps } from '@mui/material'
 
 type SelectProps = {
-  text: string;
-  value: string | number;
-};
+  text: string
+  value: string | number
+}
 
 export type SelectFieldProps = MUISelectProps & {
-  inputRef?: MUISelectProps["ref"];
-  errorMessage?: string;
-  selectPropsList: SelectProps[];
-  selectedValue: string | number;
-};
+  inputRef?: MUISelectProps['ref']
+  errorMessage?: string
+  selectPropsList: SelectProps[]
+  selectedValue: string | number
+}
 
 const StyledFormControl = styled(FormControl)({
-  width: "100%",
-});
+  width: '100%',
+})
 
 export const SelectField: React.FC<SelectFieldProps> = ({
   inputRef,
@@ -53,5 +53,5 @@ export const SelectField: React.FC<SelectFieldProps> = ({
       </StyledFormControl>
       {!!errorMessage && <FormHelperText error>{errorMessage}</FormHelperText>}
     </div>
-  );
-};
+  )
+}

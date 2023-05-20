@@ -1,3 +1,3 @@
 export type CreateBookResponse = {
-  newLevel: number | null;
-};
+  newLevel: number | null
+}

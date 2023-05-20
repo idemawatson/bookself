@@ -1,6 +1,6 @@
-import prisma from "@/lib/prisma";
-import { BOOK_STATUSES, BookUpdateSchema } from "@/types/IBookForm";
-import UserProfilceLevelUpService from "@/services/UserProfileLevelUpService";
+import prisma from '@/lib/prisma'
+import UserProfilceLevelUpService from '@/services/UserProfileLevelUpService'
+import { BOOK_STATUSES, BookUpdateSchema } from '@/types/IBookForm'
 
 export default class UpdateBookUsecase {
   constructor() {}
@@ -9,9 +9,9 @@ export default class UpdateBookUsecase {
     book_id,
     body,
   }: {
-    user_id: string;
-    book_id: string;
-    body: BookUpdateSchema;
+    user_id: string
+    book_id: string
+    body: BookUpdateSchema
   }) {
     return await prisma.$transaction(async (prisma) => {
       const old = await prisma.book.findUniqueOrThrow({
@@ -21,7 +21,7 @@ export default class UpdateBookUsecase {
             book_id,
           },
         },
-      });
+      })
       const updatedBook = await prisma.book.update({
         where: {
           book_id_on_user: {
@@ -37,27 +37,27 @@ export default class UpdateBookUsecase {
             : null,
           rating: body.rating,
         },
-      });
+      })
       //その他 -> COMPLETED に変更された場合レベルアップ
-      let levelUpRecord = null;
+      let levelUpRecord = null
       if (!isCompleted(old.status) && isCompleted(updatedBook.status)) {
         levelUpRecord = await new UserProfilceLevelUpService().execute({
           user_id,
           pageCount: updatedBook.page_count,
-        });
+        })
         //COMPLETED -> その他 に変更された場合レベルダウン
       } else if (isCompleted(old.status) && !isCompleted(updatedBook.status)) {
         await new UserProfilceLevelUpService().execute({
           user_id,
           pageCount: updatedBook.page_count * -1,
-        });
+        })
       }
 
-      return { updatedBook, levelUpRecord };
-    });
+      return { updatedBook, levelUpRecord }
+    })
   }
 }
 
 const isCompleted = (status: number) => {
-  return status === BOOK_STATUSES.COMPLETED;
-};
+  return status === BOOK_STATUSES.COMPLETED
+}
