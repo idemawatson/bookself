@@ -3,8 +3,6 @@ import prisma from '@/lib/prisma'
 import { ClientUser } from '@/types/ClientUser'
 
 export default class GetUserController {
-  constructor() {}
-
   async execute({ user_id }: { user_id?: string }): Promise<ClientUser> {
     if (!user_id) throw new ValidationError('user_id required')
 

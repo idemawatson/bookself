@@ -13,7 +13,6 @@ import { ClientTrophy } from '@/types/ClientTrophy'
 import { BOOK_STATUSES } from '@/types/IBookForm'
 
 export default class CreateTrophiesUsecase {
-  constructor() {}
   async execute({ user_id }: { user_id: string }): Promise<ClientTrophy[]> {
     const user = await prisma.user.findUniqueOrThrow({
       where: { sub: user_id },

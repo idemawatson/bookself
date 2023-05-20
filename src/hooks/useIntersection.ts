@@ -6,6 +6,7 @@ export const useIntersection = (
   const [intersecting, setIntersecting] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     if (!ref.current) return () => {}
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -25,6 +26,7 @@ export const useIntersection = (
         observer.unobserve(observerRefCurrent as HTMLDivElement)
       }
     }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     return () => {}
   })
 

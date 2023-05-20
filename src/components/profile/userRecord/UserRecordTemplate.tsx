@@ -2,8 +2,7 @@ import { FC, Suspense } from 'react'
 import UserRecordResumePaper from '@/components/profile/userRecord/UserRecordResumePaper'
 import SkeletonProfilePaper from '@/components/profile/userRecord/UserRecordSkeletonResumePaper'
 
-type Props = {}
-const UserRecordTemplate: FC<Props> = () => {
+const UserRecordTemplate: FC = () => {
   return (
     <>
       <Suspense fallback={<SkeletonProfilePaper />}>

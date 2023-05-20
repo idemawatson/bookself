@@ -3,7 +3,6 @@ import UserProfilceLevelUpService from '@/services/UserProfileLevelUpService'
 import { BOOK_STATUSES, BookUpdateSchema } from '@/types/IBookForm'
 
 export default class UpdateBookUsecase {
-  constructor() {}
   async execute({
     user_id,
     book_id,

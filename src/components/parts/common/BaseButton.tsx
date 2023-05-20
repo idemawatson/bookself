@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button, SxProps, Theme } from '@mui/material'
 import { FC, ReactNode } from 'react'
 
 type Props = {
@@ -16,7 +16,7 @@ type Props = {
   disabled?: boolean
   size?: 'large' | 'medium' | 'small'
   variant?: 'contained' | 'outlined' | 'text'
-  sx?: any
+  sx?: SxProps<Theme>
   className?: string
   children: ReactNode
 }

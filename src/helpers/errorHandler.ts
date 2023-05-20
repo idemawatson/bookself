@@ -1,6 +1,7 @@
 import { NextApiResponse } from 'next'
 import { NotFoundError, ValidationError } from '@/helpers/apiErrors'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const errorHandler = (error: any, res: NextApiResponse) => {
   console.error(error)
   if (error instanceof ValidationError) {

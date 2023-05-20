@@ -1,14 +1,16 @@
 import { Box, Tab, Tabs } from '@mui/material'
-import { FC } from 'react'
+import { FC, SyntheticEvent } from 'react'
 import { useShelfFilterTab } from '@/hooks/shelf/useShelfFilterTab'
-import { useBooks } from '@/hooks/useBooks'
 
 const TABS = ['すべて', '読みたい', '積読', '読んでる', '読んだ']
 
 const ShelfFilterTabs: FC = () => {
   const { shelfFilterTab: tab, setShelfFilterTab: setTab } = useShelfFilterTab()
 
-  const handleChange = (_: any, newValue: number) => {
+  const handleChange = (
+    _: SyntheticEvent<Element, Event>,
+    newValue: number,
+  ) => {
     setTab(newValue)
   }
 

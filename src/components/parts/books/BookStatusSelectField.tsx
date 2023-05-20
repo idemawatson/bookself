@@ -3,6 +3,7 @@ import { Control, FieldValues, Path } from 'react-hook-form'
 import { RhfSelectField } from '@/components/parts/forms/SelectField'
 
 interface Props<T extends FieldValues> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<T, any>
   name: Path<T>
   onChange?: (event: SelectChangeEvent<unknown>) => void

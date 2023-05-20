@@ -4,8 +4,6 @@ import { ClientUser } from '@/types/ClientUser'
 import { UserUpdateSchema, userUpdateForm } from '@/types/IUserForm'
 
 export default class UpdateUserController {
-  constructor() {}
-
   async execute({
     body,
     user_id,

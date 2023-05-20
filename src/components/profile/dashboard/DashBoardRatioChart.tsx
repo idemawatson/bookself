@@ -2,9 +2,6 @@ import { Typography } from '@mui/material'
 import { FC } from 'react'
 import {
   PieChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
   Pie,
   Cell,
   Legend,
@@ -12,7 +9,6 @@ import {
   PieLabelRenderProps,
 } from 'recharts'
 import { useBookRatio } from '@/hooks/useBookRatio'
-import { useStatistics } from '@/hooks/useStatistics'
 import { BOOK_STATUSES_NAME, BookStatuses } from '@/types/IBookForm'
 
 type Props = {

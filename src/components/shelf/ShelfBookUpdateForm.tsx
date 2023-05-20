@@ -12,6 +12,7 @@ import { RhfTextField } from '@/components/parts/forms/TextField'
 import { BOOK_STATUSES, BookUpdateSchema } from '@/types/IBookForm'
 
 type Props = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<BookUpdateSchema, any>
   watch: UseFormWatch<BookUpdateSchema>
   setValue: UseFormSetValue<BookUpdateSchema>

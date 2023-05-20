@@ -5,8 +5,6 @@ import { ClientUserRecord } from '@/types/ClientUserRecord'
 import { BOOK_STATUSES } from '@/types/IBookForm'
 
 export default class GetUserRecordController {
-  constructor() {}
-
   async execute({ user_id }: { user_id?: string }): Promise<ClientUserRecord> {
     if (!user_id) throw new ValidationError('user_id required')
 

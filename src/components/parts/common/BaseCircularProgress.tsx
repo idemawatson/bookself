@@ -1,9 +1,9 @@
-import { CircularProgress } from '@mui/material'
+import { CircularProgress, SxProps, Theme } from '@mui/material'
 import { FC } from 'react'
 
 type Props = {
   indicator_size: number
-  sx?: any
+  sx?: SxProps<Theme>
 }
 
 const BaseCircularProgress: FC<Props> = ({ indicator_size, sx }) => {
