@@ -1,3 +1,5 @@
+import { Typography } from '@mui/material'
+import { FC } from 'react'
 import {
   PieChart,
   CartesianGrid,
@@ -8,75 +10,73 @@ import {
   Legend,
   ResponsiveContainer,
   PieLabelRenderProps,
-} from "recharts";
-import { useStatistics } from "@/hooks/useStatistics";
-import { FC } from "react";
-import { useBookRatio } from "@/hooks/useBookRatio";
-import { BOOK_STATUSES_NAME, BookStatuses } from "@/types/IBookForm";
-import { Typography } from "@mui/material";
+} from 'recharts'
+import { useBookRatio } from '@/hooks/useBookRatio'
+import { useStatistics } from '@/hooks/useStatistics'
+import { BOOK_STATUSES_NAME, BookStatuses } from '@/types/IBookForm'
 
 type Props = {
-  year: number;
-};
+  year: number
+}
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
 const DashboardRatioChart: FC<Props> = ({ year }) => {
-  const { data } = useBookRatio(year);
+  const { data } = useBookRatio(year)
 
   const displayData = data.map((data) => {
-    return { ...data, name: BOOK_STATUSES_NAME[data.status as BookStatuses] };
-  });
+    return { ...data, name: BOOK_STATUSES_NAME[data.status as BookStatuses] }
+  })
 
-  const RADIAN = Math.PI / 180;
+  const RADIAN = Math.PI / 180
   const renderCustomizedLabel = (props: PieLabelRenderProps) => {
-    const innerRadius = props.innerRadius as number;
-    const outerRadius = props.outerRadius as number;
-    const cx = props.cx as number;
-    const cy = props.cy as number;
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = (cx as number) + radius * Math.cos(-props.midAngle * RADIAN);
-    const y = (cy as number) + radius * Math.sin(-props.midAngle * RADIAN);
-    const percent = props.percent as number;
+    const innerRadius = props.innerRadius as number
+    const outerRadius = props.outerRadius as number
+    const cx = props.cx as number
+    const cy = props.cy as number
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5
+    const x = (cx as number) + radius * Math.cos(-props.midAngle * RADIAN)
+    const y = (cy as number) + radius * Math.sin(-props.midAngle * RADIAN)
+    const percent = props.percent as number
 
     if (percent == 0) {
-      return <></>;
+      return <></>
     }
     return (
       <text
         x={x}
         y={y}
-        fill="white"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-        fontSize={"15px"}
+        fill='white'
+        textAnchor={x > cx ? 'start' : 'end'}
+        dominantBaseline='central'
+        fontSize={'15px'}
       >
         {`${(percent * 100).toFixed(1)}%`}
       </text>
-    );
-  };
+    )
+  }
   return (
     <>
       <Typography
         sx={{
           py: 1,
-          textAlign: "center",
-          fontSize: "1.2rem",
-          fontWeight: "500",
-          color: "gray",
+          textAlign: 'center',
+          fontSize: '1.2rem',
+          fontWeight: '500',
+          color: 'gray',
         }}
       >
         本棚の割合
       </Typography>
-      <div style={{ height: "250px", width: "100%" }}>
-        <ResponsiveContainer height="100%" width="100%">
+      <div style={{ height: '250px', width: '100%' }}>
+        <ResponsiveContainer height='100%' width='100%'>
           <PieChart>
             <Pie
               data={displayData}
-              dataKey="count"
-              nameKey="status"
-              cx="50%"
-              cy="50%"
+              dataKey='count'
+              nameKey='status'
+              cx='50%'
+              cy='50%'
               label={renderCustomizedLabel}
               labelLine={false}
               outerRadius={100}
@@ -90,12 +90,12 @@ const DashboardRatioChart: FC<Props> = ({ year }) => {
                 />
               ))}
             </Pie>
-            <Legend verticalAlign="bottom"></Legend>
+            <Legend verticalAlign='bottom'></Legend>
           </PieChart>
         </ResponsiveContainer>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default DashboardRatioChart;
+export default DashboardRatioChart

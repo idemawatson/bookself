@@ -1,6 +1,6 @@
-import { ThemeProvider } from "@emotion/react";
-import { FC, ReactNode } from "react";
-import { createTheme } from "@mui/material";
+import { ThemeProvider } from '@emotion/react'
+import { createTheme } from '@mui/material'
+import { FC, ReactNode } from 'react'
 
 const MyThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const theme = createTheme({
@@ -12,21 +12,21 @@ const MyThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     },
     palette: {
       primary: {
-        main: "#4CAF50",
-        contrastText: "#fff",
+        main: '#4CAF50',
+        contrastText: '#fff',
       },
       secondary: {
-        main: "#f79520",
-        contrastText: "#fff",
+        main: '#f79520',
+        contrastText: '#fff',
       },
       negative: {
-        main: "#37474F",
-        contrastText: "#fff",
+        main: '#37474F',
+        contrastText: '#fff',
       },
     },
-  });
+  })
 
-  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
-};
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>
+}
 
-export default MyThemeProvider;
+export default MyThemeProvider

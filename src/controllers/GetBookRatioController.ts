@@ -1,14 +1,14 @@
-import { ValidationError } from "@/helpers/apiErrors";
-import prisma from "@/lib/prisma";
-import { BOOK_STATUSES } from "@/types/IBookForm";
-import dayjs from "@/lib/importDayjs";
-import { StatisticsResponse } from "@/types/StatisticsResponse";
-import { BookRatioResponse } from "@/types/BookRatioResponse";
+import { ValidationError } from '@/helpers/apiErrors'
+import dayjs from '@/lib/importDayjs'
+import prisma from '@/lib/prisma'
+import { BookRatioResponse } from '@/types/BookRatioResponse'
+import { BOOK_STATUSES } from '@/types/IBookForm'
+import { StatisticsResponse } from '@/types/StatisticsResponse'
 
 type RawData = {
-  status: number;
-  _count: number;
-}[];
+  status: number
+  _count: number
+}[]
 
 export default class GetBookRatioController {
   constructor() {}
@@ -17,14 +17,14 @@ export default class GetBookRatioController {
     user_id,
     year,
   }: {
-    user_id?: string;
-    year: number;
+    user_id?: string
+    year: number
   }): Promise<BookRatioResponse> {
-    if (!user_id) throw new ValidationError("user_id required");
-    if (!Number.isInteger(year)) throw new ValidationError("year is invalid");
+    if (!user_id) throw new ValidationError('user_id required')
+    if (!Number.isInteger(year)) throw new ValidationError('year is invalid')
 
-    const gte = dayjs().year(year).startOf("year").toDate();
-    const lt = dayjs().year(year).endOf("year").toDate();
+    const gte = dayjs().year(year).startOf('year').toDate()
+    const lt = dayjs().year(year).endOf('year').toDate()
     const data = await prisma.book.groupBy({
       where: {
         user_id,
@@ -33,26 +33,26 @@ export default class GetBookRatioController {
           lt,
         },
       },
-      by: ["status"],
+      by: ['status'],
       _count: true,
-    });
+    })
 
     const STATUSES = [
       { status: 0, count: 0 },
       { status: 1, count: 0 },
       { status: 2, count: 0 },
       { status: 3, count: 0 },
-    ];
+    ]
 
     return (data as RawData).reduce(
       (ratios, raw) => {
         ratios.splice(raw.status, 1, {
           status: raw.status,
           count: Number(raw._count),
-        });
-        return ratios;
+        })
+        return ratios
       },
-      [...STATUSES]
-    );
+      [...STATUSES],
+    )
   }
 }

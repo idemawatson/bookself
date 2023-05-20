@@ -1,11 +1,11 @@
-import { FC, Suspense } from "react";
-import ShelfPage from "@/components/shelf/ShelfContent";
-import SkeletonShelfPage from "@/components/shelf/ShelfSkeletonPage";
-import ShelfFilterTabs from "@/components/shelf/ShelfFilterTabs";
-import ShelfHeader from "@/components/shelf/ShelfHeader";
-import { Container } from "@mui/material";
+import { Container } from '@mui/material'
+import { FC, Suspense } from 'react'
+import ShelfPage from '@/components/shelf/ShelfContent'
+import ShelfFilterTabs from '@/components/shelf/ShelfFilterTabs'
+import ShelfHeader from '@/components/shelf/ShelfHeader'
+import SkeletonShelfPage from '@/components/shelf/ShelfSkeletonPage'
 
-type Props = {};
+type Props = {}
 
 const ShelfTemplate: FC<Props> = ({}) => {
   return (
@@ -15,7 +15,7 @@ const ShelfTemplate: FC<Props> = ({}) => {
         <ShelfPage />
       </Suspense>
     </Container>
-  );
-};
+  )
+}
 
-export default ShelfTemplate;
+export default ShelfTemplate

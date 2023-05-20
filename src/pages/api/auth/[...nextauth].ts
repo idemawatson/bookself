@@ -1,16 +1,16 @@
-import CreateUserUsecase from "@/usecases/CreateUserUsecase";
-import NextAuth from "next-auth";
-import type { NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from 'next-auth'
+import type { NextAuthOptions } from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import CreateUserUsecase from '@/usecases/CreateUserUsecase'
 
 type ClientType = {
-  clientId: string;
-  clientSecret: string;
-};
+  clientId: string
+  clientSecret: string
+}
 
 export const authOptions: NextAuthOptions = {
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   providers: [
     GoogleProvider({
@@ -21,27 +21,27 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     signIn: async ({ user }) => {
-      console.log("SignIn Callback");
+      console.log('SignIn Callback')
       try {
-        const user_id = user.id as string;
+        const user_id = user.id as string
         const created = await new CreateUserUsecase().execute({
           user_id,
           email: user.email as string,
           name: user.name as string,
-        });
-        return !!created;
+        })
+        return !!created
       } catch (e) {
-        console.error(e);
-        return false;
+        console.error(e)
+        return false
       }
     },
     session({ session, token }) {
       if (session.user != null && token.sub != null) {
-        session.user.id = token.sub;
+        session.user.id = token.sub
       }
-      return session;
+      return session
     },
   },
-};
+}
 
-export default NextAuth(authOptions);
+export default NextAuth(authOptions)

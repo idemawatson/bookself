@@ -1,7 +1,7 @@
-import { ValidationError } from "@/helpers/apiErrors";
-import prisma from "@/lib/prisma";
-import { ClientUser } from "@/types/ClientUser";
-import { UserUpdateSchema, userUpdateForm } from "@/types/IUserForm";
+import { ValidationError } from '@/helpers/apiErrors'
+import prisma from '@/lib/prisma'
+import { ClientUser } from '@/types/ClientUser'
+import { UserUpdateSchema, userUpdateForm } from '@/types/IUserForm'
 
 export default class UpdateUserController {
   constructor() {}
@@ -10,14 +10,14 @@ export default class UpdateUserController {
     body,
     user_id,
   }: {
-    body: UserUpdateSchema;
-    user_id?: string;
+    body: UserUpdateSchema
+    user_id?: string
   }): Promise<ClientUser> {
-    if (!user_id) throw new ValidationError();
+    if (!user_id) throw new ValidationError()
 
     await userUpdateForm.validate(body).catch((e) => {
-      throw new ValidationError(e);
-    });
+      throw new ValidationError(e)
+    })
 
     const updated = await prisma.user.update({
       where: { sub: user_id },
@@ -27,8 +27,8 @@ export default class UpdateUserController {
       select: {
         name: true,
       },
-    });
+    })
 
-    return updated;
+    return updated
   }
 }

@@ -1,53 +1,53 @@
 // eslint-disable-next-line
-import { AlertColor } from "@mui/material/Alert";
-import useSWR from "swr";
+import { AlertColor } from '@mui/material/Alert'
+import useSWR from 'swr'
 
 type Props = {
-  visible: boolean;
-  severity: AlertColor | undefined;
-  message: string | undefined;
-};
+  visible: boolean
+  severity: AlertColor | undefined
+  message: string | undefined
+}
 
 const useNotificationSWR = (
-  initialData: Props
+  initialData: Props,
 ): [Props, (state: Props) => void] => {
-  const { data: state, mutate: setState } = useSWR("notification", null, {
+  const { data: state, mutate: setState } = useSWR('notification', null, {
     fallbackData: initialData,
     revalidateIfStale: true,
-  });
-  return [state as Props, setState];
-};
+  })
+  return [state as Props, setState]
+}
 
 export const useNotification = () => {
   const initialState = {
     visible: false,
     severity: undefined,
     message: undefined,
-  };
-  const [notification, setNotification] = useNotificationSWR(initialState);
+  }
+  const [notification, setNotification] = useNotificationSWR(initialState)
 
   const showError = (message: string) => {
-    showNotification("error", message);
-  };
+    showNotification('error', message)
+  }
   const showWarning = (message: string) => {
-    showNotification("warning", message);
-  };
+    showNotification('warning', message)
+  }
   const showInfo = (message: string) => {
-    showNotification("info", message);
-  };
+    showNotification('info', message)
+  }
   const showSuccess = (message: string) => {
-    showNotification("success", message);
-  };
+    showNotification('success', message)
+  }
   const showNotification = (
     severity: AlertColor | undefined,
-    message: string
+    message: string,
   ) => {
-    setNotification({ visible: true, severity, message });
-    setTimeout(hideNotification, 3000);
-  };
+    setNotification({ visible: true, severity, message })
+    setTimeout(hideNotification, 3000)
+  }
   const hideNotification = () => {
-    setNotification(initialState);
-  };
+    setNotification(initialState)
+  }
 
   return {
     notification,
@@ -57,5 +57,5 @@ export const useNotification = () => {
     showSuccess,
     hideNotification,
     useNotification,
-  };
-};
+  }
+}

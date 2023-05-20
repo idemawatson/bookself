@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import prisma from '@/lib/prisma'
 
 export default class CreateUserUsecase {
   constructor() {}
@@ -8,9 +8,9 @@ export default class CreateUserUsecase {
     email,
     name,
   }: {
-    user_id: string;
-    email: string;
-    name: string;
+    user_id: string
+    email: string
+    name: string
   }) {
     return await prisma.user.upsert({
       where: { sub: user_id },
@@ -26,6 +26,6 @@ export default class CreateUserUsecase {
           },
         },
       },
-    });
+    })
   }
 }

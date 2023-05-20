@@ -1,8 +1,8 @@
-import { Box, Grid } from "@mui/material";
-import { FC, Suspense } from "react";
-import SettingsUserInfoCard from "@/components/settings/SettingsUserInfoCard";
-import SettingsUserLoader from "@/components/settings/SettingsUserLoader";
-import SignOutButton from "../parts/common/SignOutButton";
+import { Box, Grid } from '@mui/material'
+import { FC, Suspense } from 'react'
+import SignOutButton from '../parts/common/SignOutButton'
+import SettingsUserInfoCard from '@/components/settings/SettingsUserInfoCard'
+import SettingsUserLoader from '@/components/settings/SettingsUserLoader'
 
 const SettingsTemplate: FC = () => {
   return (
@@ -17,18 +17,18 @@ const SettingsTemplate: FC = () => {
         </Grid>
         <Grid
           container
-          direction="row"
-          alignItems="flex-end"
-          justifyContent="flex-end"
+          direction='row'
+          alignItems='flex-end'
+          justifyContent='flex-end'
           sx={{ py: 4 }}
         >
-          <Grid xs={6} item sx={{ textAlign: "end" }}>
+          <Grid xs={6} item sx={{ textAlign: 'end' }}>
             <SignOutButton />
           </Grid>
         </Grid>
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default SettingsTemplate;
+export default SettingsTemplate

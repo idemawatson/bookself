@@ -1,9 +1,9 @@
-import { BaseError } from "make-error-cause";
+import { BaseError } from 'make-error-cause'
 class CustomBaseError extends BaseError {
-  readonly code?: string;
+  readonly code?: string
   constructor(message?: string, code?: string) {
-    super(message);
-    this.code = code;
+    super(message)
+    this.code = code
   }
 }
 export class ApplicationError extends CustomBaseError {}

@@ -1,8 +1,8 @@
-import UserRecordResumePaper from "@/components/profile/userRecord/UserRecordResumePaper";
-import SkeletonProfilePaper from "@/components/profile/userRecord/UserRecordSkeletonResumePaper";
-import { FC, Suspense } from "react";
+import { FC, Suspense } from 'react'
+import UserRecordResumePaper from '@/components/profile/userRecord/UserRecordResumePaper'
+import SkeletonProfilePaper from '@/components/profile/userRecord/UserRecordSkeletonResumePaper'
 
-type Props = {};
+type Props = {}
 const UserRecordTemplate: FC<Props> = () => {
   return (
     <>
@@ -10,7 +10,7 @@ const UserRecordTemplate: FC<Props> = () => {
         <UserRecordResumePaper />
       </Suspense>
     </>
-  );
-};
+  )
+}
 
-export default UserRecordTemplate;
+export default UserRecordTemplate

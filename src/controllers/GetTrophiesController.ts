@@ -1,15 +1,15 @@
-import { ValidationError } from "@/helpers/apiErrors";
-import CreateTrophiesUsecase from "@/usecases/CreateTrophiesUsecase";
-import { ClientTrophy } from "@/types/ClientTrophy";
+import { ValidationError } from '@/helpers/apiErrors'
+import { ClientTrophy } from '@/types/ClientTrophy'
+import CreateTrophiesUsecase from '@/usecases/CreateTrophiesUsecase'
 
 export default class GetTrophiesController {
-  usecase: CreateTrophiesUsecase;
+  usecase: CreateTrophiesUsecase
   constructor() {
-    this.usecase = new CreateTrophiesUsecase();
+    this.usecase = new CreateTrophiesUsecase()
   }
 
   async execute({ user_id }: { user_id?: string }): Promise<ClientTrophy[]> {
-    if (!user_id) throw new ValidationError("user_id required");
-    return await this.usecase.execute({ user_id });
+    if (!user_id) throw new ValidationError('user_id required')
+    return await this.usecase.execute({ user_id })
   }
 }

@@ -1,8 +1,8 @@
-import prisma from "@/lib/prisma";
-import { CreateBookRequest } from "@/types/CreateBookRequest";
-import dayjs from "@/lib/importDayjs";
-import { BOOK_STATUSES } from "@/types/IBookForm";
-import UserProfilceLevelUpService from "@/services/UserProfileLevelUpService";
+import dayjs from '@/lib/importDayjs'
+import prisma from '@/lib/prisma'
+import UserProfilceLevelUpService from '@/services/UserProfileLevelUpService'
+import { CreateBookRequest } from '@/types/CreateBookRequest'
+import { BOOK_STATUSES } from '@/types/IBookForm'
 
 export default class CreateBookUsecase {
   constructor() {}
@@ -10,8 +10,8 @@ export default class CreateBookUsecase {
     user_id,
     body,
   }: {
-    user_id: string;
-    body: CreateBookRequest;
+    user_id: string
+    body: CreateBookRequest
   }) {
     return await prisma.$transaction(async (prisma) => {
       const book = await prisma.book.create({
@@ -37,16 +37,16 @@ export default class CreateBookUsecase {
               ? dayjs().toDate()
               : undefined,
         },
-      });
-      let levelUpRecord = null;
+      })
+      let levelUpRecord = null
       if (book.status === BOOK_STATUSES.COMPLETED) {
         levelUpRecord = await new UserProfilceLevelUpService().execute({
           user_id,
           pageCount: book.page_count,
-        });
+        })
       }
 
-      return { book, levelUpRecord };
-    });
+      return { book, levelUpRecord }
+    })
   }
 }

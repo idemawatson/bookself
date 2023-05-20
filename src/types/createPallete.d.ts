@@ -1,11 +1,11 @@
-export declare module "@mui/material/styles" {
+export declare module '@mui/material/styles' {
   interface PaletteOptions {
-    negative: PaletteOptions["seccondary"];
+    negative: PaletteOptions['seccondary']
   }
 }
 
-export declare module "@mui/material/Button" {
+export declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
-    negative: true;
+    negative: true
   }
 }

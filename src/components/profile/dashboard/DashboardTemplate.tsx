@@ -1,13 +1,13 @@
-import { FC } from "react";
-import DashboardCompletedCard from "./DashBoardCompletedCard";
+import { FC } from 'react'
+import DashboardCompletedCard from './DashBoardCompletedCard'
 
-type Props = {};
+type Props = {}
 const DashboardTemplate: FC<Props> = () => {
   return (
     <>
       <DashboardCompletedCard />
     </>
-  );
-};
+  )
+}
 
-export default DashboardTemplate;
+export default DashboardTemplate

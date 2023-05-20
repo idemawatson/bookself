@@ -1,17 +1,17 @@
 type GoogleBooksResponse = {
   items: {
-    id: string;
+    id: string
     volumeInfo: {
-      title?: string;
-      authors?: string[];
+      title?: string
+      authors?: string[]
       imageLinks?: {
-        smallThumbnail: string;
-      };
-      publishedDate?: string;
-      pageCount?: number;
-      description?: string;
-    };
-  }[];
-};
+        smallThumbnail: string
+      }
+      publishedDate?: string
+      pageCount?: number
+      description?: string
+    }
+  }[]
+}
 
-export default GoogleBooksResponse;
+export default GoogleBooksResponse

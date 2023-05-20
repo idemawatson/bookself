@@ -1,4 +1,4 @@
 export type BookRatioResponse = {
-  status: number;
-  count: number;
-}[];
+  status: number
+  count: number
+}[]

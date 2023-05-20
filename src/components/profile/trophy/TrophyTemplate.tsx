@@ -1,8 +1,8 @@
-import SkeletonProfilePaper from "@/components/profile/userRecord/UserRecordSkeletonResumePaper";
-import { FC, Suspense } from "react";
-import TrophyList from "@/components/profile/trophy/TrophyList";
+import { FC, Suspense } from 'react'
+import TrophyList from '@/components/profile/trophy/TrophyList'
+import SkeletonProfilePaper from '@/components/profile/userRecord/UserRecordSkeletonResumePaper'
 
-type Props = {};
+type Props = {}
 const TrophyTemplate: FC<Props> = () => {
   return (
     <>
@@ -10,7 +10,7 @@ const TrophyTemplate: FC<Props> = () => {
         <TrophyList />
       </Suspense>
     </>
-  );
-};
+  )
+}
 
-export default TrophyTemplate;
+export default TrophyTemplate

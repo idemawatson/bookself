@@ -1,18 +1,18 @@
-import UserRecordSerializer from "@/helpers/UserRecordSerializer";
-import { ValidationError } from "@/helpers/apiErrors";
-import prisma from "@/lib/prisma";
-import { ClientUserRecord } from "@/types/ClientUserRecord";
-import { BOOK_STATUSES } from "@/types/IBookForm";
+import UserRecordSerializer from '@/helpers/UserRecordSerializer'
+import { ValidationError } from '@/helpers/apiErrors'
+import prisma from '@/lib/prisma'
+import { ClientUserRecord } from '@/types/ClientUserRecord'
+import { BOOK_STATUSES } from '@/types/IBookForm'
 
 export default class GetUserRecordController {
   constructor() {}
 
   async execute({ user_id }: { user_id?: string }): Promise<ClientUserRecord> {
-    if (!user_id) throw new ValidationError("user_id required");
+    if (!user_id) throw new ValidationError('user_id required')
 
     const userRecord = await prisma.userRecord.findUniqueOrThrow({
       where: { user_id },
-    });
+    })
     const {
       _sum: { page_count },
       _count,
@@ -23,12 +23,12 @@ export default class GetUserRecordController {
       },
       _sum: { page_count: true },
       _count: true,
-    });
+    })
 
     return new UserRecordSerializer({
       ...userRecord,
       pageCount: page_count || 0,
       bookCount: _count,
-    }).execute();
+    }).execute()
   }
 }

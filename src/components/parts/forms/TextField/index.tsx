@@ -4,21 +4,21 @@ import {
   FieldValues,
   useController,
   UseControllerProps,
-} from "react-hook-form";
+} from 'react-hook-form'
 
 import {
   TextField,
   TextFieldProps,
-} from "@/components/parts/forms/TextField/presenter";
+} from '@/components/parts/forms/TextField/presenter'
 
 export type RhfTextFieldProps<T extends FieldValues> = TextFieldProps &
-  UseControllerProps<T>;
+  UseControllerProps<T>
 
 /**
  * react-hook-formラッパー
  */
 export const RhfTextField = <T extends FieldValues>(
-  props: RhfTextFieldProps<T>
+  props: RhfTextFieldProps<T>,
 ) => {
   const {
     name,
@@ -30,11 +30,11 @@ export const RhfTextField = <T extends FieldValues>(
     endAdornment,
     multiline,
     rows,
-  } = props;
+  } = props
   const {
     field: { ref, ...rest },
     formState: { errors },
-  } = useController<T>({ name, control });
+  } = useController<T>({ name, control })
 
   return (
     <TextField
@@ -52,5 +52,5 @@ export const RhfTextField = <T extends FieldValues>(
         `${(errors[name] as DeepMap<FieldValues, FieldError>).message}`
       }
     />
-  );
-};
+  )
+}
