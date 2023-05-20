@@ -6,22 +6,22 @@ type Props = {
   trophy: ClientTrophy
 }
 const TrophyImage: React.FC<Props> = ({ trophy }) => {
-  const getRank = () => {
+  const getTrophyImg = () => {
     switch (trophy.rank) {
       case TROPHY_RANKS.BRONZE:
-        return 'bronze'
+        return '/trophy_bronze.png'
       case TROPHY_RANKS.SILVER:
-        return 'silver'
+        return '/trophy_silver.png'
       case TROPHY_RANKS.GOLD:
-        return 'gold'
+        return '/trophy_gold.png'
       case TROPHY_RANKS.PLATINUM:
-        return 'platinum'
+        return '/trophy_platinum.png'
     }
   }
   return (
     <>
       <Image
-        src={`/trophy_${getRank()}.png`}
+        src={getTrophyImg()}
         alt={`${TROPHY_RANK_NAME[trophy.rank]}トロフィー`}
         width={60}
         height={100}
