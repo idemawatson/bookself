@@ -22,11 +22,6 @@ const Error404: React.FC<Props> = ({ children }) => {
       >
         404: ページが存在しません
       </Typography>
-      <Typography
-        sx={{ my: 1, color: 'black', textAlign: 'center', lineHeight: 2 }}
-      >
-        <div>データが見つかりませんでした</div>
-      </Typography>
       {children}
     </Paper>
   )

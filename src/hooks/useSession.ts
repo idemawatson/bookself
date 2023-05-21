@@ -8,7 +8,7 @@ const useSession = () => {
   const session = useNextAuthSession({
     required: true,
     onUnauthenticated() {
-      router.push('/')
+      router.push('/top')
     },
   })
   const { showLoading, hideLoading } = useLoading()
