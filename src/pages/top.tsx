@@ -1,8 +1,29 @@
 import { Grid, Paper, Typography } from '@mui/material'
+import { GetServerSideProps } from 'next'
 import Image from 'next/image'
+import { getSession } from 'next-auth/react'
+import { FC } from 'react'
 import SignInButton from '@/components/parts/common/SignInButton'
 
-const Home = () => {
+type Props = {
+  isLogin: boolean
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context)
+  if (session) {
+    return {
+      redirect: {
+        destination: '/shelf',
+      },
+      props: {},
+    }
+  }
+
+  return { props: { isLogin: !!session } }
+}
+
+const Home: FC<Props> = () => {
   return (
     <Paper
       sx={{
@@ -30,7 +51,19 @@ const Home = () => {
             }}
             color={'primary.main'}
           >
-            BookSelf
+            Book
+            <Typography
+              component={'span'}
+              sx={{
+                fontSize: '4rem',
+                fontWeight: 500,
+                letterSpacing: '0.1rem',
+              }}
+              color={'secondary.main'}
+            >
+              S
+            </Typography>
+            elf
           </Typography>
           <Typography
             sx={{
