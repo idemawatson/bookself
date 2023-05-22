@@ -10,7 +10,7 @@ export const useStatistics = (year: number) => {
   const { data, mutate } = useSWR(`statistics?year=${year}`, fetcher, {
     suspense: true,
     revalidateOnFocus: false,
-    revalidateOnMount: false,
+    revalidateOnMount: true,
     revalidateIfStale: false,
   })
 

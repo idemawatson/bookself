@@ -20,6 +20,7 @@ export default class BookSerializer {
       comment: this.book.comment || undefined,
       status: this.book.status as BookStatuses,
       completedAt: this.book.completed_at?.toISOString() || undefined,
+      updatedAt: this.book.updated_at?.toISOString() || undefined,
       rating: this.book.rating,
     }
   }

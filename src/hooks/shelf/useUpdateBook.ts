@@ -24,7 +24,7 @@ const useUpdateBook = () => {
         ...form,
         completedAt:
           form.status === BOOK_STATUSES.COMPLETED
-            ? dayjs(form.completedAt).toDate()
+            ? dayjs(form.completedAt).startOf('day').toDate()
             : undefined,
         rating:
           form.status === BOOK_STATUSES.COMPLETED ? form.rating : undefined,
