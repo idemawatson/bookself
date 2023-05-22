@@ -31,7 +31,7 @@ const ShelfBookUpdateDrawer: React.FC<Props> = ({
     defaultValues: {
       comment: book.comment,
       status: book.status,
-      completedAt: dayjs(book?.completedAt).toDate(),
+      completedAt: dayjs(book?.completedAt).startOf('day').toDate(),
       rating: book.rating,
     },
   })

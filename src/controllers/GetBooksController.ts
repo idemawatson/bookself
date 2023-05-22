@@ -21,6 +21,7 @@ export default class GetBooksController {
         user_id,
         status: status ? Number(status) : undefined,
       },
+      orderBy: [{ completed_at: 'desc' }, { updated_at: 'desc' }],
       skip: this.PER_PAGE * (Number(page) - 1),
       take: this.PER_PAGE,
     })

@@ -51,6 +51,8 @@ const TROPHY_CODE = {
   PGT0080: 'PGT0080',
   PGT0090: 'PGT0090',
   PGT0100: 'PGT0100',
+  PGT0110: 'PGT0110',
+  PGT0120: 'PGT0120',
 } as const
 
 export type TrophyCode = (typeof TROPHY_CODE)[keyof typeof TROPHY_CODE]
@@ -123,61 +125,61 @@ const LV0100 = {
 
 const BKC0010 = {
   trophy_id: TROPHY_CODE.BKC0010,
-  name: '10冊',
+  name: '10冊読破',
   description: '10冊の本を読みました',
   rank: TROPHY_RANKS.BRONZE,
 }
 const BKC0020 = {
   trophy_id: TROPHY_CODE.BKC0020,
-  name: '20冊',
+  name: '20冊読破',
   description: '20冊の本を読みました',
   rank: TROPHY_RANKS.BRONZE,
 }
 const BKC0030 = {
   trophy_id: TROPHY_CODE.BKC0030,
-  name: '30冊',
+  name: '30冊読破',
   description: '30冊の本を読みました',
   rank: TROPHY_RANKS.SILVER,
 }
 const BKC0040 = {
   trophy_id: TROPHY_CODE.BKC0040,
-  name: '40冊',
+  name: '40冊読破',
   description: '40冊の本を読みました',
   rank: TROPHY_RANKS.SILVER,
 }
 const BKC0050 = {
   trophy_id: TROPHY_CODE.BKC0050,
-  name: '50冊',
+  name: '50冊読破',
   description: '50冊の本を読みました',
   rank: TROPHY_RANKS.SILVER,
 }
 const BKC0060 = {
   trophy_id: TROPHY_CODE.BKC0060,
-  name: '60冊',
+  name: '60冊読破',
   description: '60冊の本を読みました',
   rank: TROPHY_RANKS.GOLD,
 }
 const BKC0070 = {
   trophy_id: TROPHY_CODE.BKC0070,
-  name: '70冊',
+  name: '70冊読破',
   description: '70冊の本を読みました',
   rank: TROPHY_RANKS.GOLD,
 }
 const BKC0080 = {
   trophy_id: TROPHY_CODE.BKC0080,
-  name: '80冊',
+  name: '80冊読破',
   description: '80冊の本を読みました',
   rank: TROPHY_RANKS.GOLD,
 }
 const BKC0090 = {
   trophy_id: TROPHY_CODE.BKC0090,
-  name: '90冊',
+  name: '90冊読破',
   description: '90冊の本を読みました',
   rank: TROPHY_RANKS.PLATINUM,
 }
 const BKC0100 = {
   trophy_id: TROPHY_CODE.BKC0100,
-  name: '100冊',
+  name: '100冊読破',
   description: '100冊の本を読みました',
   rank: TROPHY_RANKS.PLATINUM,
 }
@@ -247,7 +249,7 @@ const PGT0050 = {
   trophy_id: TROPHY_CODE.PGT0050,
   name: '3000ページ突破',
   description: '累計3000ページ読みました',
-  rank: TROPHY_RANKS.SILVER,
+  rank: TROPHY_RANKS.BRONZE,
 }
 const PGT0060 = {
   trophy_id: TROPHY_CODE.PGT0060,
@@ -259,24 +261,36 @@ const PGT0070 = {
   trophy_id: TROPHY_CODE.PGT0070,
   name: '5000ページ突破',
   description: '累計5000ページ読みました',
-  rank: TROPHY_RANKS.GOLD,
+  rank: TROPHY_RANKS.SILVER,
 }
 const PGT0080 = {
   trophy_id: TROPHY_CODE.PGT0080,
   name: '6000ページ突破',
   description: '累計6000ページ読みました',
-  rank: TROPHY_RANKS.GOLD,
+  rank: TROPHY_RANKS.SILVER,
 }
 const PGT0090 = {
   trophy_id: TROPHY_CODE.PGT0090,
   name: '7000ページ突破',
   description: '累計7000ページ読みました',
-  rank: TROPHY_RANKS.PLATINUM,
+  rank: TROPHY_RANKS.GOLD,
 }
 const PGT0100 = {
   trophy_id: TROPHY_CODE.PGT0100,
   name: '8000ページ突破',
   description: '累計8000ページ読みました',
+  rank: TROPHY_RANKS.GOLD,
+}
+const PGT0110 = {
+  trophy_id: TROPHY_CODE.PGT0100,
+  name: '9000ページ突破',
+  description: '累計9000ページ読みました',
+  rank: TROPHY_RANKS.GOLD,
+}
+const PGT0120 = {
+  trophy_id: TROPHY_CODE.PGT0100,
+  name: '10000ページ突破',
+  description: '累計10000ページ読みました',
   rank: TROPHY_RANKS.PLATINUM,
 }
 
@@ -326,6 +340,8 @@ export const PAGE_TROPHIES = [
   { threshold: 6000, trophy: TROPHY_CODE.PGT0080 },
   { threshold: 7000, trophy: TROPHY_CODE.PGT0090 },
   { threshold: 8000, trophy: TROPHY_CODE.PGT0100 },
+  { threshold: 9000, trophy: TROPHY_CODE.PGT0110 },
+  { threshold: 10000, trophy: TROPHY_CODE.PGT0120 },
 ] as TROPHY_CODE_WITH_THRESHOLD
 
 export const ALL_TROPHIES = {
@@ -365,6 +381,8 @@ export const ALL_TROPHIES = {
   [TROPHY_CODE.PGT0080]: PGT0080,
   [TROPHY_CODE.PGT0090]: PGT0090,
   [TROPHY_CODE.PGT0100]: PGT0100,
+  [TROPHY_CODE.PGT0110]: PGT0110,
+  [TROPHY_CODE.PGT0120]: PGT0120,
 }
 export const getTrophyByTrophyId = (trophy_id: string) => {
   return ALL_TROPHIES[trophy_id as TrophyCode]

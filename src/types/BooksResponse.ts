@@ -15,5 +15,6 @@ export type ClientBook = SearchBook & {
   comment?: string
   status: BookStatuses
   completedAt?: string
+  updatedAt?: string
   rating: number
 }
