@@ -1,5 +1,4 @@
 import { ValidationError } from '@/helpers/apiErrors'
-import dayjs from '@/lib/importDayjs'
 import prisma from '@/lib/prisma'
 import { BookRatioResponse } from '@/types/BookRatioResponse'
 
@@ -9,25 +8,12 @@ type RawData = {
 }[]
 
 export default class GetBookRatioController {
-  async execute({
-    user_id,
-    year,
-  }: {
-    user_id?: string
-    year: number
-  }): Promise<BookRatioResponse> {
+  async execute({ user_id }: { user_id?: string }): Promise<BookRatioResponse> {
     if (!user_id) throw new ValidationError('user_id required')
-    if (!Number.isInteger(year)) throw new ValidationError('year is invalid')
 
-    const gte = dayjs().year(year).startOf('year').toDate()
-    const lt = dayjs().year(year).endOf('year').toDate()
     const data = await prisma.book.groupBy({
       where: {
         user_id,
-        created_at: {
-          gte,
-          lt,
-        },
       },
       by: ['status'],
       _count: true,

@@ -11,14 +11,10 @@ import {
 import { useBookRatio } from '@/hooks/useBookRatio'
 import { BOOK_STATUSES_NAME, BookStatuses } from '@/types/IBookForm'
 
-type Props = {
-  year: number
-}
-
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']
 
-const DashboardRatioChart: FC<Props> = ({ year }) => {
-  const { data } = useBookRatio(year)
+const DashboardRatioChart: FC = () => {
+  const { data } = useBookRatio()
 
   const displayData = data.map((data) => {
     return { ...data, name: BOOK_STATUSES_NAME[data.status as BookStatuses] }

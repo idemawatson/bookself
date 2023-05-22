@@ -60,7 +60,7 @@ const DashboardCompletedCard = () => {
           <DashboardBarChart year={year} />
         </Suspense>
         <Suspense fallback={<Skeleton height={400} width='100%' />}>
-          <DashboardRatioChart year={year} />
+          <DashboardRatioChart />
         </Suspense>
       </CardContent>
     </Card>
