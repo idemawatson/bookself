@@ -35,7 +35,7 @@ const ShelfContent: FC = () => {
     if (intersection && !isReachingEnd) {
       setSize(size + 1)
     }
-  }, [intersection, isReachingEnd, size, setSize])
+  }, [intersection, isReachingEnd, setSize])
 
   const open = (book: ClientBook) => {
     setOpenCount(openCount + 1)
