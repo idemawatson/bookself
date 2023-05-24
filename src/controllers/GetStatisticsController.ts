@@ -40,7 +40,7 @@ export default class GetStatisticsController {
     const rawData = await prisma.$queryRaw`
                                 SELECT date_trunc('month', completed_at) as month, count(*) as book_count
                                 FROM "Book"
-                                WHERE completed_at IS NOT NULL AND status = ${BOOK_STATUSES.COMPLETED}
+                                WHERE completed_at IS NOT NULL AND status = ${BOOK_STATUSES.COMPLETED} AND user_id = ${user_id}
                                 AND completed_at between ${gte} AND ${lt}
                                 GROUP BY month
                                 ORDER BY month ASC;`
